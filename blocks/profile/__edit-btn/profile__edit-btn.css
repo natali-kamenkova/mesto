@@ -1,0 +1,12 @@
+.profile__edit-btn{
+  box-sizing: border-box;
+  border: 1px solid #FFFFFF;
+  width: 24px;
+  height: 24px;
+  background-color: #000000;
+  margin-top: 6px;
+}
+
+.profile__edit-btn:hover{
+  opacity: 0.6;
+}
