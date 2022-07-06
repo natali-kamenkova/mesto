@@ -5,8 +5,16 @@
   height: 24px;
   background-color: #000000;
   margin-top: 6px;
+  
 }
 
 .profile__edit-btn:hover{
   opacity: 0.6;
+}
+
+@media screen and (max-width: 584px) {
+  .profile__edit-btn{
+    width: 18px;
+    height: 18px;
+  }
 }

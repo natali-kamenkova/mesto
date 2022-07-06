@@ -10,3 +10,9 @@
 .submit-btn:hover{
   opacity: 0.6;
 }
+
+@media screen and (max-width: 900px) {
+  .submit-btn{
+    width: 282px;
+  }
+}
