@@ -20,14 +20,13 @@ popupClose.onclick = function() {
 
 popupOpen.addEventListener("click", function () {
   popup.style.display = "block";
-  
+  nameInput.value = nameUser.textContent;
+  jobInput.value = userJob.textContent;
 });
-
-
-/*nameUser.innerHTML = nameInput ;*/
 
 popupClose.addEventListener("click", function () {
   popup.style.display = "none";
+
 });
 
 function formSubmitHandler(evt) {

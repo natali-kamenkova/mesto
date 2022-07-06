@@ -1,4 +1,4 @@
-.profile__info{
+.profile__info {
   max-width: 336px;
   min-height: 73px;
   display: flex;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 584px) {
-  .profile__info{
+  .profile__info {
     justify-content: space-around;
   }
 }

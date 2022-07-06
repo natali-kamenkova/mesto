@@ -1,4 +1,4 @@
-.page{
+.page {
   font-family: 'Inter', 'Open Sans', 'Roboto';
   max-width: 1280px;
   width: 100%;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 584px) {
-  .page{
+  .page {
     padding-top: 28px;
     padding-bottom: 36px;
   }
