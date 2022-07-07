@@ -1,0 +1,4 @@
+.element__like-btn_active:active{
+  opacity: 1;
+  background: url(../../../../images/Union.svg);
+}
