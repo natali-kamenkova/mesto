@@ -10,7 +10,7 @@
   overflow: hidden;
   max-width: 294px;
   min-width: 189px;
-}
+  }
 
 @media screen and (max-width: 584px) {
   .profile__name {

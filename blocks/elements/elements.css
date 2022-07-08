@@ -8,7 +8,7 @@
   margin-bottom: 67px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .elements {
     max-width: 584px;
     margin: 0 auto 67px;
@@ -23,7 +23,7 @@
   }
 }
 
-@media screen and (max-width: 595px) {
+@media screen and (max-width: 650px) {
   .elements {
     display: flex;
     flex-direction: column;

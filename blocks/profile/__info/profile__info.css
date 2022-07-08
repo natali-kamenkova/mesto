@@ -9,6 +9,10 @@
 
 @media screen and (max-width: 584px) {
   .profile__info {
-    justify-content: space-around;
+    box-sizing: border-box;
+    min-height: 54px;
+    padding: 0;
+    padding-left: 48px;
+    padding-right: 15px;
   }
 }
