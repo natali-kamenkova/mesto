@@ -20,5 +20,6 @@
     margin-top: 9px;
     box-sizing: border-box;
     padding-left: 18px;
+    max-width: 210px;
   }
 }
