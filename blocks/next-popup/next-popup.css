@@ -1,4 +1,4 @@
-.popup {
+.next-popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,6 +8,6 @@
   display: none;
 }
 
-.popup_opened {
+.next-popup_opened{
   display: block;
 }
