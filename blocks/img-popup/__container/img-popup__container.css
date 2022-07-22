@@ -1,6 +1,5 @@
-.img-popup__container{
+.img-popup__container {
   background-color: transparent;
-  position: relative;
   max-width: 75vw;
   max-height: 75vh;
   position: absolute;
@@ -10,7 +9,7 @@
 }
 
 @media screen and (max-width: 530px) {
-  .img-popup__container{
+  .img-popup__container {
     width: 240px;
     height: 299px;
   }

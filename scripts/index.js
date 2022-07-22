@@ -79,6 +79,7 @@ form.addEventListener('submit', removePopupModifier);
 function addCardJS(name, link) {
   const cardElement = teml.cloneNode(true);
   cardElement.querySelector('.element__image').src = link;
+  cardElement.querySelector('.element__image').alt = name;
   cardElement.querySelector('.element__name').textContent = name;
   cardElement.querySelector('.element__like-btn').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like-btn_active');
