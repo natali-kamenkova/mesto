@@ -1,0 +1,11 @@
+.img-popup__container{
+  background-color: transparent;
+  position: relative;
+  max-width: 75vw;
+  max-height: 75vh;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
