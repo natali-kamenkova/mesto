@@ -9,3 +9,9 @@
   transform: translate(-50%, -50%);
 }
 
+@media screen and (max-width: 530px) {
+  .img-popup__container{
+    width: 240px;
+    height: 299px;
+  }
+}
