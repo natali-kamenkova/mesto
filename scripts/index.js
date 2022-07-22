@@ -1,19 +1,19 @@
 const popup = document.querySelector('.popup');
 const nextPopup = document.querySelector('.next-popup');
 const imgPopup = document.querySelector('.img-popup');
-let popupOpen = document.querySelector('.profile__edit-btn');
-let nextPopupOpenBtn = document.querySelector('.profile__next-popup-btn');
-let popupClose = document.querySelector('.popup__close');
-let nameInput = document.querySelector('.popup__input_type_name');
-let jobInput = document.querySelector('.popup__input_type_job');
-let form = document.querySelector('.popup__form');
-let nameUser = document.querySelector('.profile__name');
-let userJob = document.querySelector('.profile__profession');
-let elements = document.querySelector('.elements');
-let nextPopupClose = nextPopup.querySelector('.popup__close');
-let formCard = nextPopup.querySelector('.popup__form');
-let nextPopupNameInput = nextPopup.querySelector('.popup__input_type_card-name');
-let nextPopupLinkInput = nextPopup.querySelector('.popup__input_type_card-link');
+const popupOpen = document.querySelector('.profile__edit-btn');
+const nextPopupOpenBtn = document.querySelector('.profile__next-popup-btn');
+const popupClose = document.querySelector('.popup__close');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_job');
+const form = document.querySelector('.popup__form');
+const nameUser = document.querySelector('.profile__name');
+const userJob = document.querySelector('.profile__profession');
+const elements = document.querySelector('.elements');
+const nextPopupClose = nextPopup.querySelector('.popup__close');
+const formCard = nextPopup.querySelector('.popup__form');
+const nextPopupNameInput = nextPopup.querySelector('.popup__input_type_card-name');
+const nextPopupLinkInput = nextPopup.querySelector('.popup__input_type_card-link');
 const teml = document.querySelector('#card-template').content.children[0];
 const picture = imgPopup.querySelector('.img-popup__img');
 const imgPopupClose = imgPopup.querySelector('.popup__close');
@@ -91,10 +91,10 @@ function addCardJS(name, link) {
 
   const cardImg = cardElement.querySelector('.element__image');
   cardImg.addEventListener('click', () => openPopup(imgPopup));
-   cardImg.addEventListener('click', function(){
-   picture.src = link;
+  cardImg.addEventListener('click', function () {
+    picture.src = link;
   })
-  
+
   elements.prepend(cardElement);
 }
 
