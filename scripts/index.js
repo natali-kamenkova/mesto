@@ -18,7 +18,6 @@ const teml = document.querySelector('#card-template').content.children[0];
 const picture = imgPopup.querySelector('.img-popup__img');
 const imgPopupClose = imgPopup.querySelector('.popup__close');
 
-console.log(imgPopupClose);
 const initialCards = [
   {
     name: 'Архыз',
