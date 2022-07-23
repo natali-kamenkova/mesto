@@ -1,4 +1,4 @@
-.popup__container_type_img{
+.popup-image__container{
   background-color: transparent;
   max-width: 75vw;
   max-height: 75vh;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 530px) {
-  .popup__container_type_img{
+  .popup-image__container{
     width: 240px;
     height: 299px;
   }

@@ -1,6 +1,6 @@
 const popup = document.querySelector('.popup');
 const nextPopup = document.querySelector('.next-popup');
-const imgPopup = document.querySelector('.popap_type_img');
+const imgPopup = document.querySelector('.popup-image');
 const popupOpen = document.querySelector('.profile__edit-btn');
 const nextPopupOpenBtn = document.querySelector('.profile__next-popup-btn');
 const popupClose = document.querySelector('.popup__close');
@@ -15,7 +15,7 @@ const formCard = nextPopup.querySelector('.popup__form');
 const nextPopupNameInput = nextPopup.querySelector('.popup__input_type_card-name');
 const nextPopupLinkInput = nextPopup.querySelector('.popup__input_type_card-link');
 const teml = document.querySelector('#card-template').content.children[0];
-const picture = imgPopup.querySelector('.popup__img');
+const picture = imgPopup.querySelector('.popup-image__img');
 const imgPopupClose = imgPopup.querySelector('.popup__close');
 console.log(imgPopup);
 const initialCards = [
