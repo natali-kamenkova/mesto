@@ -1,23 +1,23 @@
-const popup = document.querySelector('.popup');
-const nextPopup = document.querySelector('.next-popup');
+const profilePopup = document.querySelector('.popup-profile');
+const cardPopup = document.querySelector('.popup-cards');
 const imgPopup = document.querySelector('.popup-image');
-const popupOpen = document.querySelector('.profile__edit-btn');
-const nextPopupOpenBtn = document.querySelector('.profile__next-popup-btn');
-const popupClose = document.querySelector('.popup__close');
-const nameInput = document.querySelector('.popup__input_type_name');
-const jobInput = document.querySelector('.popup__input_type_job');
-const form = document.querySelector('.popup__form');
-const nameUser = document.querySelector('.profile__name');
-const userJob = document.querySelector('.profile__profession');
-const elements = document.querySelector('.elements');
-const nextPopupClose = nextPopup.querySelector('.popup__close');
-const formCard = nextPopup.querySelector('.popup__form');
-const nextPopupNameInput = nextPopup.querySelector('.popup__input_type_card-name');
-const nextPopupLinkInput = nextPopup.querySelector('.popup__input_type_card-link');
-const teml = document.querySelector('#card-template').content.children[0];
-const picture = imgPopup.querySelector('.popup-image__img');
-const imgPopupClose = imgPopup.querySelector('.popup__close');
-console.log(imgPopup);
+const profileEditBtn = document.querySelector('.profile__edit-btn');
+const cardPopupBtn = document.querySelector('.profile__next-popup-btn');
+const btnProfilePopupClose = document.querySelector('.popup__close');
+const profileInputName = document.querySelector('.popup__input_type_name');
+const profileInputJob = document.querySelector('.popup__input_type_job');
+const profilePopupForm = document.querySelector('.popup__form');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__profession');
+const cardsContainer = document.querySelector('.elements');
+const btnCardPopupClose = cardPopup.querySelector('.popup__close');
+const cardPopupForm = cardPopup.querySelector('.popup__form');
+const cardPopupInputName = cardPopup.querySelector('.popup__input_type_card-name');
+const cardPopupInputLink = cardPopup.querySelector('.popup__input_type_card-link');
+const templateElement = document.querySelector('#card-template').content.children[0];
+const imgPopupPicture = imgPopup.querySelector('.popup-image__img');
+const btnImgPopupClose = imgPopup.querySelector('.popup__close');
+console.log(btnCardPopupClose);
 const initialCards = [
   {
     name: 'Архыз',
@@ -47,39 +47,51 @@ const initialCards = [
 
 function openPopup(modal) {
   modal.classList.toggle('popup_opened');
-  nameInput.value = nameUser.textContent;
-  jobInput.value = userJob.textContent;
 }
 
-popupOpen.addEventListener('click', () => openPopup(popup));
-nextPopupOpenBtn.addEventListener('click', () => openPopup(nextPopup));
+profileEditBtn.addEventListener('click', () => openPopup(profilePopup));
+cardPopupBtn.addEventListener('click', () => openPopup(cardPopup));
+
+
+function openProfilePopup(modal) {
+  profileInputName.value = profileName.textContent;
+  profileInputJob.value = profileJob.textContent;
+}
+
+profileEditBtn.addEventListener('click', () => openProfilePopup(profilePopup));
 
 function removePopupModifier() {
-  popup.classList.remove('popup_opened');
-  nextPopup.classList.remove('popup_opened');
+  profilePopup.classList.remove('popup_opened');
+  cardPopup.classList.remove('popup_opened');
   imgPopup.classList.remove('popup_opened');
-  nextPopupNameInput.value = "";
-  nextPopupLinkInput.value = "";
 }
 
-popupClose.addEventListener('click', removePopupModifier);
-nextPopupClose.addEventListener('click', removePopupModifier);
-imgPopupClose.addEventListener('click', removePopupModifier);
+btnProfilePopupClose.addEventListener('click', removePopupModifier);
+btnCardPopupClose.addEventListener('click', removePopupModifier);
+btnImgPopupClose.addEventListener('click', removePopupModifier);
+
+function closeCardsPopup() {
+  cardPopupInputName.value = "";
+  cardPopupInputLink.value = "";
+}
+
+btnCardPopupClose.addEventListener('click', closeCardsPopup);
 
 
-function formSubmitHandler(evt) {
+function HandleSubmitform(evt) {
   evt.preventDefault();
-  nameUser.textContent = nameInput.value;
-  userJob.textContent = jobInput.value;
+  profileName.textContent = profileInputName.value;
+  profileJob.textContent = profileInputJob.value;
+  removePopupModifier();
 }
 
-form.addEventListener('submit', formSubmitHandler);
-form.addEventListener('submit', removePopupModifier);
+profilePopupForm.addEventListener('submit', HandleSubmitform);
 
 function addCardJS(name, link) {
-  const cardElement = teml.cloneNode(true);
-  cardElement.querySelector('.element__image').src = link;
-  cardElement.querySelector('.element__image').alt = name;
+  const cardElement = templateElement.cloneNode(true);
+  const img = cardElement.querySelector('.element__image');
+  img.src = link;
+  img.alt = name;
   cardElement.querySelector('.element__name').textContent = name;
   cardElement.querySelector('.element__like-btn').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like-btn_active');
@@ -90,26 +102,26 @@ function addCardJS(name, link) {
   });
 
   const cardImg = cardElement.querySelector('.element__image');
-  cardImg.addEventListener('click', () => openPopup(imgPopup));
   cardImg.addEventListener('click', function () {
-    picture.src = link;
+    openPopup(imgPopup);
+    imgPopupPicture.src = link;
   })
 
-  elements.prepend(cardElement);
+  cardsContainer.prepend(cardElement);
 }
 
-const cardsHTML = initialCards.map(card => {
+const cardsHTML = initialCards.map(function (card) {
   return addCardJS(card.name, card.link);
 })
 
 function cardFormSubmitHandler(evt) {
   evt.preventDefault();
-  const cardName = nextPopupNameInput.value;
-  const cardLink = nextPopupLinkInput.value;
+  const cardName = cardPopupInputName.value;
+  const cardLink = cardPopupInputLink.value;
   const cardsHTML = addCardJS(cardName, cardLink);
-  nextPopupNameInput.value = "";
-  nextPopupLinkInput.value = "";
+  cardPopupInputName.value = "";
+  cardPopupInputLink.value = "";
   removePopupModifier();
 }
-formCard.addEventListener('submit', cardFormSubmitHandler);
+cardPopupForm.addEventListener('submit', cardFormSubmitHandler);
 

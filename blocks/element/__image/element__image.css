@@ -6,6 +6,10 @@
   border-top-right-radius: 10px;
 }
 
+.element__image:hover{
+  cursor: pointer;
+}
+
 @media screen and (max-width: 530px) {
   .element__image{
     height: 299px;
