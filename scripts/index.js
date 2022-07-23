@@ -87,27 +87,39 @@ function HandleSubmitform(evt) {
 
 profilePopupForm.addEventListener('submit', HandleSubmitform);
 
-function addCardJS(name, link) {
-  const cardElement = templateElement.cloneNode(true);
-  const img = cardElement.querySelector('.element__image');
+function createCard(name, link) {
+  const clonedCard = templateElement.cloneNode(true);
+  const img = clonedCard.querySelector('.element__image');
   img.src = link;
   img.alt = name;
-  cardElement.querySelector('.element__name').textContent = name;
-  cardElement.querySelector('.element__like-btn').addEventListener('click', function (evt) {
+  clonedCard.querySelector('.element__name').textContent = name;
+  return clonedCard
+}
+
+function addListeners(card) {
+  card.querySelector('.element__like-btn').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like-btn_active');
   });
 
-  cardElement.querySelector('.element__reset-btn').addEventListener('click', function () {
-    cardElement.remove();
+  card.querySelector('.element__reset-btn').addEventListener('click', function () {
+    card.remove();
   });
 
-  const cardImg = cardElement.querySelector('.element__image');
+  const cardImg = card.querySelector('.element__image');
   cardImg.addEventListener('click', function () {
     openPopup(imgPopup);
-    imgPopupPicture.src = link;
+    imgPopupPicture.src = cardImg.src;
   })
+}
 
-  cardsContainer.prepend(cardElement);
+function renderCard(card) {
+  cardsContainer.prepend(card);
+}
+
+function addCardJS(name, link) {
+  const cardElement = createCard(name, link)
+  addListeners(cardElement)
+  renderCard(cardElement)
 }
 
 const cardsHTML = initialCards.map(function (card) {
@@ -118,7 +130,7 @@ function cardFormSubmitHandler(evt) {
   evt.preventDefault();
   const cardName = cardPopupInputName.value;
   const cardLink = cardPopupInputLink.value;
-  const cardsHTML = addCardJS(cardName, cardLink);
+  addCardJS(cardName, cardLink);
   cardPopupInputName.value = "";
   cardPopupInputLink.value = "";
   removePopupModifier();
