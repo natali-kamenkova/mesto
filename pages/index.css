@@ -31,8 +31,9 @@
 @import url(../blocks/element/__like-btn/_active/element__like-btn_active.css);
 @import url(../blocks/profile/__next-popup-btn/profile__next-popup-btn.css);
 @import url(../blocks/next-popup/next-popup.css);
-@import url(../blocks/img-popup/img-popup.css);
-@import url(../blocks/img-popup/__img/img-popup__img.css);
-@import url(../blocks/img-popup/__container/img-popup__container.css);
+@import url(../blocks/popup/__img/popup__img.css);
+@import url(../blocks/popup/type/popap_type_img.css);
+@import url(../blocks/popup/__container/_type/popup__container_type_img.css);
+@import url(../blocks/popup/__img/popup__img.css);
 @import url(../blocks/element/__reset-btn/element__reset-btn.css);
-@import url(../blocks/img-popup/__close/img-popup__close.css);
+
