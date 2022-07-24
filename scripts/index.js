@@ -43,7 +43,7 @@ const initialCards = [
   },
   {
     name: 'Ростов-на-Дону',
-    link: 'https://www.kp.ru/russia/wp-content/uploads/2019/02/Naberezhnaya-1330-530x322.jpg'
+    link: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Rostov_City_Hall_2021.jpg'
   }
 ];
 
