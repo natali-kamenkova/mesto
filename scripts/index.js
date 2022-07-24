@@ -16,8 +16,10 @@ const cardPopupInputName = cardPopup.querySelector('.popup__input_type_card-name
 const cardPopupInputLink = cardPopup.querySelector('.popup__input_type_card-link');
 const templateElement = document.querySelector('#card-template').content.children[0];
 const imgPopupPicture = imgPopup.querySelector('.popup-image__img');
+const imgPopupName = imgPopup.querySelector('.popup-image__title');
 const btnImgPopupClose = imgPopup.querySelector('.popup__close');
-console.log(btnCardPopupClose);
+console.log(imgPopupName);
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -26,10 +28,6 @@ const initialCards = [
   {
     name: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
     name: 'Камчатка',
@@ -42,6 +40,10 @@ const initialCards = [
   {
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  },
+  {
+    name: 'Ростов-на-Дону',
+    link: 'https://www.kp.ru/russia/wp-content/uploads/2019/02/Naberezhnaya-1330-530x322.jpg'
   }
 ];
 
@@ -49,43 +51,54 @@ function openPopup(modal) {
   modal.classList.toggle('popup_opened');
 }
 
-profileEditBtn.addEventListener('click', () => openPopup(profilePopup));
-cardPopupBtn.addEventListener('click', () => openPopup(cardPopup));
 
+cardPopupBtn.addEventListener('click', function () {
+  return openPopup(cardPopup);
+});
 
 function openProfilePopup(modal) {
   profileInputName.value = profileName.textContent;
   profileInputJob.value = profileJob.textContent;
 }
 
-profileEditBtn.addEventListener('click', () => openProfilePopup(profilePopup));
+profileEditBtn.addEventListener('click', function () {
+  openProfilePopup(profilePopup);
+  openPopup(profilePopup);
+})
 
-function removePopupModifier() {
-  profilePopup.classList.remove('popup_opened');
-  cardPopup.classList.remove('popup_opened');
-  imgPopup.classList.remove('popup_opened');
+
+function removePopupModifier(modal) {
+  modal.classList.remove('popup_opened');
 }
 
-btnProfilePopupClose.addEventListener('click', removePopupModifier);
-btnCardPopupClose.addEventListener('click', removePopupModifier);
-btnImgPopupClose.addEventListener('click', removePopupModifier);
+btnProfilePopupClose.addEventListener('click', function () {
+  removePopupModifier(profilePopup);
+});
+
+
+btnCardPopupClose.addEventListener('click', function () {
+  closeCardsPopup();
+  removePopupModifier(cardPopup);
+});
+btnImgPopupClose.addEventListener('click', function () {
+  removePopupModifier(imgPopup);
+});
+
 
 function closeCardsPopup() {
   cardPopupInputName.value = "";
   cardPopupInputLink.value = "";
 }
 
-btnCardPopupClose.addEventListener('click', closeCardsPopup);
 
-
-function HandleSubmitform(evt) {
+function handleSubmitform(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileJob.textContent = profileInputJob.value;
   removePopupModifier();
 }
 
-profilePopupForm.addEventListener('submit', HandleSubmitform);
+profilePopupForm.addEventListener('submit', handleSubmitform);
 
 function createCard(name, link) {
   const clonedCard = templateElement.cloneNode(true);
@@ -93,8 +106,10 @@ function createCard(name, link) {
   img.src = link;
   img.alt = name;
   clonedCard.querySelector('.element__name').textContent = name;
+  addListeners(clonedCard)
   return clonedCard
 }
+
 
 function addListeners(card) {
   card.querySelector('.element__like-btn').addEventListener('click', function (evt) {
@@ -105,12 +120,16 @@ function addListeners(card) {
     card.remove();
   });
 
+  const text = card.querySelector('.element__name');
   const cardImg = card.querySelector('.element__image');
   cardImg.addEventListener('click', function () {
     openPopup(imgPopup);
     imgPopupPicture.src = cardImg.src;
+    imgPopupPicture.alt = text.textContent;
+    imgPopupName.textContent = text.textContent;
   })
 }
+
 
 function renderCard(card) {
   cardsContainer.prepend(card);
@@ -118,7 +137,6 @@ function renderCard(card) {
 
 function addCardJS(name, link) {
   const cardElement = createCard(name, link)
-  addListeners(cardElement)
   renderCard(cardElement)
 }
 
@@ -126,7 +144,7 @@ const cardsHTML = initialCards.map(function (card) {
   return addCardJS(card.name, card.link);
 })
 
-function cardFormSubmitHandler(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardPopupInputName.value;
   const cardLink = cardPopupInputLink.value;
@@ -135,5 +153,5 @@ function cardFormSubmitHandler(evt) {
   cardPopupInputLink.value = "";
   removePopupModifier();
 }
-cardPopupForm.addEventListener('submit', cardFormSubmitHandler);
+cardPopupForm.addEventListener('submit', handleCardFormSubmit);
 
