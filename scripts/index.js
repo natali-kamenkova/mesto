@@ -95,7 +95,7 @@ function handleSubmitform(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileJob.textContent = profileInputJob.value;
-  removePopupModifier();
+  removePopupModifier(profilePopup);
 }
 
 profilePopupForm.addEventListener('submit', handleSubmitform);
@@ -151,7 +151,7 @@ function handleCardFormSubmit(evt) {
   addCardJS(cardName, cardLink);
   cardPopupInputName.value = "";
   cardPopupInputLink.value = "";
-  removePopupModifier();
+  removePopupModifier(cardPopup);
 }
 cardPopupForm.addEventListener('submit', handleCardFormSubmit);
 
