@@ -18,32 +18,32 @@ const templateElement = document.querySelector('#card-template').content.childre
 const imgPopupPicture = imgPopup.querySelector('.popup-image__img');
 const imgPopupName = imgPopup.querySelector('.popup-image__title');
 const btnImgPopupClose = imgPopup.querySelector('.popup__close');
-console.log(imgPopupName);
+console.log(templateElement);
 
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   },
   {
     name: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: 'Яффо',
+    link: 'https://7d9e88a8-f178-4098-bea5-48d960920605.selcdn.net/4ef76ebb-714e-460c-886f-fc514226d278/'
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Лаба',
+    link: 'https://anapacity.com/images/articles/big/reka-laba.jpg'
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Адыгея',
+    link: 'https://kurort.yuga.ru/media/b2/f2/photo_2020-01-28_122338__k4d0vn5.jpg'
   },
   {
     name: 'Ростов-на-Дону',
-    link: 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Rostov_City_Hall_2021.jpg'
+    link: 'https://34travel.me/media/upload/images/2019/march/rostov-na-donu/new/Depositphotos_201004458_s-2019.jpg'
   }
 ];
 
@@ -53,10 +53,10 @@ function openPopup(modal) {
 
 
 cardPopupBtn.addEventListener('click', function () {
-  return openPopup(cardPopup);
-});
+    return openPopup(cardPopup);
+  });
 
-function openProfilePopup(modal) {
+function openProfilePopup() {
   profileInputName.value = profileName.textContent;
   profileInputJob.value = profileJob.textContent;
 }
@@ -106,11 +106,27 @@ function createCard(name, link) {
   img.src = link;
   img.alt = name;
   clonedCard.querySelector('.element__name').textContent = name;
-  addListeners(clonedCard)
+  clonedCard.querySelector('.element__like-btn').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like-btn_active');
+  });
+
+  clonedCard.querySelector('.element__reset-btn').addEventListener('click', function () {
+    clonedCard.remove();
+  });
+
+  const text = clonedCard.querySelector('.element__name');
+  const cardImg = clonedCard.querySelector('.element__image');
+  cardImg.addEventListener('click', function () {
+    openPopup(imgPopup);
+    imgPopupPicture.src = cardImg.src;
+    imgPopupPicture.alt = text.textContent;
+    imgPopupName.textContent = text.textContent;
+  })
+ /* addListeners(clonedCard)*/
   return clonedCard
 }
 
-
+/*
 function addListeners(card) {
   card.querySelector('.element__like-btn').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like-btn_active');
@@ -128,7 +144,7 @@ function addListeners(card) {
     imgPopupPicture.alt = text.textContent;
     imgPopupName.textContent = text.textContent;
   })
-}
+}*/
 
 
 function renderCard(card) {
@@ -143,6 +159,8 @@ function addCardJS(name, link) {
 const cardsHTML = initialCards.map(function (card) {
   return addCardJS(card.name, card.link);
 })
+
+
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
