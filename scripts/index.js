@@ -91,14 +91,14 @@ function closeCardsPopup() {
 }
 
 
-function handleSubmitform(evt) {
+function handleSubmitForm(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileJob.textContent = profileInputJob.value;
   removePopupModifier(profilePopup);
 }
 
-profilePopupForm.addEventListener('submit', handleSubmitform);
+profilePopupForm.addEventListener('submit', handleSubmitForm);
 
 function createCard(name, link) {
   const clonedCard = templateElement.cloneNode(true);
