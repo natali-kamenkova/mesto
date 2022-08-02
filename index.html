@@ -76,13 +76,15 @@
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
   </div>
-  <div class="popup popup-profile">
+  <div class="popup popup-profile" >
     <div class="popup__container popup__container_form">
       <button class="popup__close" type="button" aria-label="close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="dataEditing" action="#" class="popup__form">
-        <input type="text" class="popup__input popup__input_type_name" value="Жак-Ив Кусто">
-        <input type="text" class="popup__input popup__input_type_job" value="Исследователь океана">
+      <form name="dataEditing" action="#" class="popup__form" novalidate>
+        <input id="name-input" type="text" class="popup__input popup__input_type_name" value="Жак-Ив Кусто" minlength="2" maxlength="40">
+        <span class="popup__input-error name-input-error">Вы пропустили данное поле</span>
+        <input id="job-input" type="text" class="popup__input popup__input_type_job" value="Исследователь океана" minlength="2" maxlength="200">
+        <span class="popup__input-error job-input-error">Вы пропустили данное поле</span>
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
     </div>
@@ -91,9 +93,9 @@
     <div class="popup__container popup__container_form">
       <button class="popup__close" type="button" aria-label="close"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form name="dataEditing" action="#" class="popup__form">
-        <input type="text" class="popup__input popup__input_type_card-name" placeholder="Название" required>
-        <input type="text" class="popup__input popup__input_type_card-link" placeholder="Ссылка на картинку" required>
+      <form name="addingСard" action="#" class="popup__form" novalidate>
+        <input id="cardName-input" type="text" class="popup__input popup__input_type_card-name" placeholder="Название">
+        <input id="cardLink-input" type="url" class="popup__input popup__input_type_card-link" placeholder="Ссылка на картинку">
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
     </div>
@@ -117,6 +119,7 @@
     </div>
   </template>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

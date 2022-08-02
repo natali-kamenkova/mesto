@@ -173,3 +173,4 @@ function handleCardFormSubmit(evt) {
 }
 cardPopupForm.addEventListener('submit', handleCardFormSubmit);
 
+/*console.log(document.forms.addingСard)*/
