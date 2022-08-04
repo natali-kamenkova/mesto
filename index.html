@@ -80,11 +80,11 @@
     <div class="popup__container popup__container_form">
       <button class="popup__close" type="button" aria-label="close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form name="dataEditing" action="#" class="popup__form" novalidate>
-        <input id="name-input" type="text" class="popup__input popup__input_type_name" value="Жак-Ив Кусто" minlength="2" maxlength="40">
-        <span class="popup__input-error name-input-error">Вы пропустили данное поле</span>
-        <input id="job-input" type="text" class="popup__input popup__input_type_job" value="Исследователь океана" minlength="2" maxlength="200">
-        <span class="popup__input-error job-input-error">Вы пропустили данное поле</span>
+      <form name="dataEditing" action="#" class="popup__form popup__form_profile" novalidate>
+        <input id="popup__input_type_name" type="text" class="popup__input popup__input_type_name" value="Жак-Ив Кусто" minlength="2" maxlength="40">
+        <span class="popup__input-error popup__input_type_name-error">Вы пропустили данное поле</span>
+        <input id="popup__input_type_job" type="text" class="popup__input popup__input_type_job" value="Исследователь океана" minlength="2" maxlength="200">
+        <span class="popup__input-error popup__input_type_job-error">Вы пропустили данное поле</span>
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
     </div>
@@ -93,9 +93,11 @@
     <div class="popup__container popup__container_form">
       <button class="popup__close" type="button" aria-label="close"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form name="addingСard" action="#" class="popup__form" novalidate>
-        <input id="cardName-input" type="text" class="popup__input popup__input_type_card-name" placeholder="Название">
-        <input id="cardLink-input" type="url" class="popup__input popup__input_type_card-link" placeholder="Ссылка на картинку">
+      <form name="addingСard" action="#" class="popup__form popup__form_card" novalidate>
+        <input id="popup__input_type_card-name" type="text" class="popup__input popup__input_type_card-name" placeholder="Название" minlength="2">
+        <span class="popup__input-error popup__input_type_card-name-error">Вы пропустили данное поле</span>
+        <input id="popup__input_type_card-link" type="url" class="popup__input popup__input_type_card-link" placeholder="Ссылка на картинку">
+        <span class="popup__input-error popup__input_type_card-link-error">Введите адрес сайта.</span>
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
     </div>

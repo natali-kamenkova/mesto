@@ -53,17 +53,22 @@ function openPopup(modal) {
 
 
 cardPopupBtn.addEventListener('click', function () {
-    return openPopup(cardPopup);
-  });
+  openPopup(cardPopup);
+  /*enableValidation(cardPopup);   */                            ///!!!
+});
 
 function openProfilePopup() {
   profileInputName.value = profileName.textContent;
   profileInputJob.value = profileJob.textContent;
 }
 
+
 profileEditBtn.addEventListener('click', function () {
   openProfilePopup(profilePopup);
   openPopup(profilePopup);
+  hideInputError(profileForm, profileInputName);                     ////!!!!!!
+  hideInputError(profileForm, profileInputJob);
+  /* enableValidation(profilePopup);    */                            ///!!!!!!
 })
 
 
@@ -73,7 +78,10 @@ function removePopupModifier(modal) {
 
 btnProfilePopupClose.addEventListener('click', function () {
   removePopupModifier(profilePopup);
+
 });
+
+
 
 
 btnCardPopupClose.addEventListener('click', function () {
@@ -91,15 +99,17 @@ function closeCardsPopup() {
 }
 
 
-function handleSubmitForm(evt) {
+function handleSubmitProfileForm(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileJob.textContent = profileInputJob.value;
   removePopupModifier(profilePopup);
+  
 }
 
-profilePopupForm.addEventListener('submit', handleSubmitForm);
+profilePopupForm.addEventListener('submit', handleSubmitProfileForm);
 
+//создание карточки
 function createCard(name, link) {
   const clonedCard = templateElement.cloneNode(true);
   const img = clonedCard.querySelector('.element__image');
@@ -122,7 +132,7 @@ function createCard(name, link) {
     imgPopupPicture.alt = text.textContent;
     imgPopupName.textContent = text.textContent;
   })
- /* addListeners(clonedCard)*/
+  /* addListeners(clonedCard)*/
   return clonedCard
 }
 
@@ -146,7 +156,7 @@ function addListeners(card) {
   })
 }*/
 
-
+//размещение на странице
 function renderCard(card) {
   cardsContainer.prepend(card);
 }
@@ -161,7 +171,7 @@ const cardsHTML = initialCards.map(function (card) {
 })
 
 
-
+//функция отправки CardForm
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardPopupInputName.value;
@@ -171,6 +181,4 @@ function handleCardFormSubmit(evt) {
   cardPopupInputLink.value = "";
   removePopupModifier(cardPopup);
 }
-cardPopupForm.addEventListener('submit', handleCardFormSubmit);
-
-/*console.log(document.forms.addingСard)*/
+cardPopupForm.addEventListener('submit', handleCardFormSubmit); 

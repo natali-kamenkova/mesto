@@ -12,7 +12,7 @@
 }
 
 .popup_opened {
- /* display: block;*/
- visibility: visible;
- opacity: 1;
+  /* display: block;*/
+  visibility: visible;
+  opacity: 1;
 }
