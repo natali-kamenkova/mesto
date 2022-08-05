@@ -54,21 +54,21 @@ function openPopup(modal) {
 
 cardPopupBtn.addEventListener('click', function () {
   openPopup(cardPopup);
-  /*enableValidation(cardPopup);   */                            ///!!!
+  enableValidation(cardPopup);                             ///!!!
 });
 
 function openProfilePopup() {
   profileInputName.value = profileName.textContent;
   profileInputJob.value = profileJob.textContent;
+  //hideInputError(profilePopupForm , profileInputName);         ////!!!!!
+ // hideInputError(profilePopupForm , profileInputJob);           /////!!!!!!!!
 }
 
 
 profileEditBtn.addEventListener('click', function () {
   openProfilePopup(profilePopup);
   openPopup(profilePopup);
-  hideInputError(profileForm, profileInputName);                     ////!!!!!!
-  hideInputError(profileForm, profileInputJob);
-  /* enableValidation(profilePopup);    */                            ///!!!!!!
+  enableValidation(profilePopup);                               ///!!!!!!
 })
 
 
@@ -104,7 +104,7 @@ function handleSubmitProfileForm(evt) {
   profileName.textContent = profileInputName.value;
   profileJob.textContent = profileInputJob.value;
   removePopupModifier(profilePopup);
-  
+
 }
 
 profilePopupForm.addEventListener('submit', handleSubmitProfileForm);
