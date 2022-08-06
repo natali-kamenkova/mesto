@@ -1,3 +1,4 @@
 .popup__input_type_card-link-error{
-  margin-top: 5px;
+ position: absolute;
+ top: 200px;
 }

@@ -6,7 +6,7 @@
   font-size: 12px;
   line-height: 15px;
   color: #FF0000;
-  min-height: 15px;
+  /*min-height: 15px;*/
 }
 .popup__input-error_active{
   opacity: 1;

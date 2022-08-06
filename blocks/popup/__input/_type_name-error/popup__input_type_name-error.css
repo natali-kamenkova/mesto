@@ -1,3 +1,4 @@
-.popup__input_type_name-error{
- margin-top: -25px;
+.popup__input_type_name-error {
+  position: absolute;
+  top: 145px;
 }

@@ -12,6 +12,18 @@
   padding: 12px 124px 14px 125px;
 }
 
+.popup__submit_disabled{
+  background: transparent;
+  border-color: #000000;
+  color: #000000;
+  opacity: 0.2;
+}
+
+/*.popup__submit_disabled:hover{
+  opacity: 0.2;
+  
+}*/
+
 .popup__submit:hover {
   opacity: 0.8;
   cursor: pointer;

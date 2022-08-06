@@ -54,26 +54,36 @@ function openPopup(modal) {
 
 cardPopupBtn.addEventListener('click', function () {
   openPopup(cardPopup);
-  enableValidation(cardPopup);                             ///!!!
+  openCardPopup()
+  //enableValidation(cardPopup);                             ///!!!
 });
+
+function openCardPopup () {
+  cardPopupInputName.value ='';
+  cardPopupInputLink.value = '';
+ // hideInputError(cardPopup, cardPopupInputName);
+ // hideInputError(cardPopup, cardPopupInputLink);
+}
 
 function openProfilePopup() {
   profileInputName.value = profileName.textContent;
   profileInputJob.value = profileJob.textContent;
-  //hideInputError(profilePopupForm , profileInputName);         ////!!!!!
- // hideInputError(profilePopupForm , profileInputJob);           /////!!!!!!!!
+  
+ //hideInputError(profilePopupForm , profileInputName);         ////!!!!!
+ //hideInputError(profilePopupForm , profileInputJob);           /////!!!!!!!!
 }
 
 
 profileEditBtn.addEventListener('click', function () {
   openProfilePopup(profilePopup);
   openPopup(profilePopup);
-  enableValidation(profilePopup);                               ///!!!!!!
+ // enableValidation(profilePopup);                               ///!!!!!!         !!!!!!!!!
 })
 
 
 function removePopupModifier(modal) {
   modal.classList.remove('popup_opened');
+ 
 }
 
 btnProfilePopupClose.addEventListener('click', function () {
