@@ -2,13 +2,13 @@ console.log('Удачи!!!!!')             //.popup__input_type_error- Крас�
 
 
 
-/* 
+
 //принимает форму и поля формы и валид
 function isValid(formElement, inputElement, obj) {
   if (!inputElement.validity.valid) {
     // showInputError теперь получает параметром форму, в которой
     // находится проверяемое поле, и само это поле
-    showInputError(formElement, inputElement, inputElement.validationMessage,obj);
+    showInputError(formElement, inputElement, inputElement.validationMessage, obj);
   } else {
     // hideInputError теперь получает параметром форму, в которой
     // находится проверяемое поле, и само это поле
@@ -46,6 +46,7 @@ function hideInputError(formElement, inputElement, obj) {
   inputElement.classList.remove(obj.inputErrorClass);
   errorElement.classList.remove(obj.errorClass);
   errorElement.textContent = '';
+  
 }
 
 
@@ -56,7 +57,7 @@ function setEventListeners(formElement, obj) {
   const inputList = Array.from(formElement.querySelectorAll(obj.inputSelector));
   // Найдём в текущей форме кнопку отправки
   const buttonElement = formElement.querySelector(obj.submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, obj);
+  toggleButtonState(inputList, buttonElement,obj);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       isValid(formElement, inputElement, obj);
@@ -74,7 +75,7 @@ function setEventListeners(formElement, obj) {
 //Добавление обработчиков всем формам
 function enableValidation(obj) {
 
-  const formList = Array.from(document.querySelectorAll(obj.inputSelector)); //массив форм
+  const formList = Array.from(document.querySelectorAll(obj.formSelector)); //массив форм
 
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
@@ -98,20 +99,10 @@ function hasInvalidInput(inputList) {
     return !inputElement.validity.valid;
   });
 }
-/*
-enableValidation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-};*/
-
 
 // Функция принимает массив полей ввода
 // и элемент кнопки, состояние которой нужно менять
-/*
+
 function toggleButtonState(inputList, buttonElement, obj) {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
@@ -145,9 +136,8 @@ document.addEventListener('click', function(evt){
 }
 })
 
-
-
-
+// Вызовем функцию
+//enableValidation();
 
 
 
@@ -161,11 +151,26 @@ enableValidation({
   errorClass: 'popup__input-error_active'
 });
 
-*/
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 //принимает форму и поля формы и валид
 function isValid(formElement, inputElement) {
@@ -301,7 +306,7 @@ document.addEventListener('click', function(evt){
 })
 
 // Вызовем функцию
-enableValidation();
+enableValidation();*/
 
 
 
