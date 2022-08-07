@@ -40,11 +40,11 @@
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__input-error/_active/popup__input-error_active.css);
-@import url(../blocks/popup/__input/_type/popup__input_type_name-error.css);
-@import url(../blocks/popup/__input/_type/popup__input_type_job-error.css);
-@import url(../blocks/popup/__input/_type/popup__input_type_card-name-error.css);
-@import url(../blocks/popup/__input/_type/popup__input_type_card-link-error.css);
-
+@import url(../blocks/popup/__span/popup__span.css);
+@import url(../blocks/popup/__span/_name-error/popup__span_name-error.css);
+@import url(../blocks/popup/__span/_job-error/popup__span_job-error.css);
+@import url(../blocks/popup/__span/_card-name-error/popup__span_card-name-error.css);
+@import url(../blocks/popup/__span/_card-link-error/popup__span_card-link-error.css);
 
 
 
