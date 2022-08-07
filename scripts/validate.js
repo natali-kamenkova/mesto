@@ -4,6 +4,7 @@ console.log('Удачи!!!!!')             //.popup__input_type_error- Крас�
 
 
 //принимает форму и поля формы и валид
+
 function isValid(formElement, inputElement, obj) {
   if (!inputElement.validity.valid) {
     // showInputError теперь получает параметром форму, в которой
@@ -59,12 +60,12 @@ function setEventListeners(formElement, obj) {
   const buttonElement = formElement.querySelector(obj.submitButtonSelector);
   toggleButtonState(inputList, buttonElement,obj);
   inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement, obj);
+    inputElement.addEventListener('input', function () {
+        isValid(formElement, inputElement, obj);
 
-      // Вызовем toggleButtonState и передадим ей массив полей и кнопку
-      toggleButtonState(inputList, buttonElement, obj);
-    });
+        // Вызовем toggleButtonState и передадим ей массив полей и кнопку
+        toggleButtonState(inputList, buttonElement, obj);
+      });
   });
 }
 
@@ -117,10 +118,13 @@ function toggleButtonState(inputList, buttonElement, obj) {
   }
 }
 
+
+
 document.addEventListener('keydown', function (evt) {
   if (evt.key === 'Escape') {
     closePopupEsc()
   }
+  
 });
 
 function closePopupEsc (){
@@ -128,6 +132,7 @@ function closePopupEsc (){
   popupList.forEach((popup) => {
     popup.classList.remove('popup_opened');
     });
+   
 }
 
 document.addEventListener('click', function(evt){
@@ -140,16 +145,14 @@ document.addEventListener('click', function(evt){
 //enableValidation();
 
 
+const validationObject = {  formSelector: '.popup__form',
+inputSelector: '.popup__input',
+submitButtonSelector: '.popup__submit',
+inactiveButtonClass: 'popup__submit_disabled',
+inputErrorClass: 'popup__input_type_error',
+errorClass: 'popup__input-error_active'}
 
-
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-});
+enableValidation(validationObject);
 
 
 
