@@ -1,4 +1,4 @@
-console.log('Удачи!!!!!')             //.popup__input_type_error- Красная полоска  |||||| .popup__input-error_active -Надпись
+console.log('Удачи!!!!!')             //.popup__input_type_error- Красная полоска  |||||| .popup__span_active -Надпись
 
 
 
@@ -31,11 +31,15 @@ function showInputError(formElement, inputElement, errorMessage, obj) {
     errorElement.textContent = 'Введите адрес сайта.'
     
   }
+  
+  if(inputElement.id ==='popup__span_card-name'){
+     inputElement.setCustomValidity('')
+     errorElement.textContent = ' '
+  }
   if (inputElement.value === '') {
     errorElement.textContent = 'Вы пропустили это поле'
     
   }
-  
 }
 
 
