@@ -99,11 +99,11 @@ function toggleButtonState(inputList, buttonElement, obj) {
     disableButton(buttonElement, obj)
   } else {
     // иначе сделай кнопку активной
-    enableFunction(buttonElement, obj);
+    enableButton(buttonElement, obj);
   }
 }
 
-function enableFunction(buttonElement, obj) {
+function enableButton(buttonElement, obj) {
   buttonElement.classList.remove(obj.inactiveButtonClass);
   buttonElement.removeAttribute('disabled');
 }
