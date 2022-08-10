@@ -38,8 +38,6 @@
 @import url(../blocks/element/__reset-btn/element__reset-btn.css);
 @import url(../blocks/popup-image/__title/popup-image__title.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
-@import url(../blocks/popup/__input-error/popup__input-error.css);
-@import url(../blocks/popup/__input-error/_active/popup__input-error_active.css);
 @import url(../blocks/popup/__span/popup__span.css);
 @import url(../blocks/popup/__span/_name-error/popup__span_name-error.css);
 @import url(../blocks/popup/__span/_job-error/popup__span_job-error.css);
