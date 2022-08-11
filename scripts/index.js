@@ -53,7 +53,7 @@ function openPopup(modal) {
 
   document.addEventListener('keyup', handleEscUp)
 
-  document.addEventListener('click', function (evt) {
+  modal.addEventListener('click', function (evt) {
     if (evt.target.classList.contains('popup_opened')) {
       removePopupModifier(modal)
     }
