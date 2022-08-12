@@ -53,13 +53,35 @@ function openPopup(modal) {
 
   document.addEventListener('keyup', handleEscUp)
 
-  modal.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('popup_opened')) {
-      removePopupModifier(modal)
-    }
-  })
+  
 
 }
+
+profilePopup.addEventListener('click', function (evt) {
+  
+  if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close'))
+   {
+    removePopupModifier(profilePopup)
+  }
+})
+
+cardPopup.addEventListener('click', function (evt) {
+  
+  if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close'))
+   {
+    removePopupModifier(cardPopup)
+  }
+})
+
+imgPopup.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
+    removePopupModifier(imgPopup)
+  }
+})
+
+
+
+
 
 
 function handleEscUp(evt) {
@@ -106,22 +128,6 @@ function removePopupModifier(modal) {
   document.removeEventListener('keydown', handleEscUp)
 }
 
-btnProfilePopupClose.addEventListener('click', function () {
-  removePopupModifier(profilePopup);
-
-});
-
-
-
-
-btnCardPopupClose.addEventListener('click', function () {
-
-  removePopupModifier(cardPopup);
-});
-btnImgPopupClose.addEventListener('click', function () {
-  removePopupModifier(imgPopup);
-});
-
 
 
 
@@ -162,25 +168,7 @@ function createCard(name, link) {
   return clonedCard
 }
 
-/*
-function addListeners(card) {
-  card.querySelector('.element__like-btn').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like-btn_active');
-  });
 
-  card.querySelector('.element__reset-btn').addEventListener('click', function () {
-    card.remove();
-  });
-
-  const text = card.querySelector('.element__name');
-  const cardImg = card.querySelector('.element__image');
-  cardImg.addEventListener('click', function () {
-    openPopup(imgPopup);
-    imgPopupPicture.src = cardImg.src;
-    imgPopupPicture.alt = text.textContent;
-    imgPopupName.textContent = text.textContent;
-  })
-}*/
 
 //размещение на странице
 function renderCard(card) {
@@ -208,3 +196,5 @@ function handleCardFormSubmit(evt) {
 
 }
 cardPopupForm.addEventListener('submit', handleCardFormSubmit); 
+
+
