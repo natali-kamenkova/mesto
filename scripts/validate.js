@@ -1,7 +1,7 @@
 console.log('Удачи!!!!!')             //.popup__input_type_error- Красная полоска  |||||| .popup__span_active -Надпись
 
 
-
+/*
 
 //принимает форму и поля формы и валид
 
@@ -126,7 +126,7 @@ const validationObject = {
 }
 
 enableValidation(validationObject);
-
+*/
 
 
 
