@@ -225,8 +225,7 @@ function handleCardFormSubmit(evt) {
 
   const cardWeJustCreated = addCardAndReturnAddedCard(cardName, cardLink);
   addCardImageClickListener(cardWeJustCreated)
- 
-  removePopupModifier(cardPopup);
+   removePopupModifier(cardPopup);
 
 }
 cardPopupForm.addEventListener('submit', handleCardFormSubmit); 

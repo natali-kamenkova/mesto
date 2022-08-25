@@ -1,8 +1,10 @@
 export class FormValidator {
+
   constructor(obj, formElement) {
     this.formElement = formElement;
     this.enableValidation(obj)
   }
+  
   isValid(formElement, inputElement, obj) {
     if (!inputElement.validity.valid) {
       // showInputError теперь получает параметром форму, в которой
