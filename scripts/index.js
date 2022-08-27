@@ -35,30 +35,30 @@ const validationObject = {
 
 const initialCards = [
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
     name: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: 'Яффо',
-    link: 'https://7d9e88a8-f178-4098-bea5-48d960920605.selcdn.net/4ef76ebb-714e-460c-886f-fc514226d278/'
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    name: 'Лаба',
-    link: 'https://anapacity.com/images/articles/big/reka-laba.jpg'
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: 'Адыгея',
-    link: 'https://kurort.yuga.ru/media/b2/f2/photo_2020-01-28_122338__k4d0vn5.jpg'
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: 'Ростов-на-Дону',
-    link: 'https://34travel.me/media/upload/images/2019/march/rostov-na-donu/new/Depositphotos_201004458_s-2019.jpg'
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-];
+]; 
 
 
 
@@ -87,15 +87,76 @@ function renderCard(card) {
 
 function openPopup(modal) {
   modal.classList.add('popup_opened');
-
-  document.addEventListener('keyup', handleEscUp)
-
-
+  document.addEventListener('keyup', handleEscUp);
 
 }
 
-profilePopup.addEventListener('click', function (evt) {
 
+function handleEscUp(evt) {
+  evt.preventDefault();
+  if (evt.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_opened');
+    removePopupModifier(activePopup);
+  }
+}
+
+
+function openCardPopup() {
+  cardPopupForm.reset();
+  cardFormValidator.resetValidation()
+  cardFormValidator._disableButton(cardPopupSubmitBtn, validationObject)
+}
+
+function openProfilePopup() {
+  profileInputName.value = profileName.textContent;
+  profileInputJob.value = profileJob.textContent;
+  profileFormValidator.resetValidation()
+
+}
+
+
+function removePopupModifier(modal) {
+  modal.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscUp)
+}
+
+
+function handleSubmitProfileForm(evt) {
+  evt.preventDefault();
+  profileName.textContent = profileInputName.value;
+  profileJob.textContent = profileInputJob.value;
+  removePopupModifier(profilePopup);
+
+}
+
+
+//функция отправки CardForm - Сохранить новую карточку
+//вызывается когда я нажимаю на кнопку сохранить
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+  const cardName = cardPopupInputName.value;
+  const cardLink = cardPopupInputLink.value;
+  const cardWeJustCreated = addCardAndReturnAddedCard(cardName, cardLink);
+  createImagePopup(cardWeJustCreated)
+  removePopupModifier(cardPopup);
+
+}
+
+function createImagePopup(cardElement) {
+  const text = cardElement.querySelector('.element__name');
+  const cardImg = cardElement.querySelector('.element__image');
+  cardElement.alt = text.textContent;
+  imgPopupPicture.src = cardImg.src;
+  imgPopupName.textContent = text.textContent;
+ 
+}
+function openImagePopap(cardElement) {
+  createImagePopup(cardElement);
+  openPopup(imgPopup);
+}
+
+
+profilePopup.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
     removePopupModifier(profilePopup)
   }
@@ -114,40 +175,11 @@ imgPopup.addEventListener('click', function (evt) {
   }
 })
 
-
-
-
-
-
-function handleEscUp(evt) {
-  evt.preventDefault();
-  if (evt.key === 'Escape') {
-    const activePopup = document.querySelector('.popup_opened');
-    removePopupModifier(activePopup);
-  }
-}
-
-
-
 cardPopupBtn.addEventListener('click', function () {
   openPopup(cardPopup);
   openCardPopup()
 
 });
-
-function openCardPopup() {
-  cardPopupForm.reset();
-  cardFormValidator.resetValidation()
-  cardFormValidator._disableButton(cardPopupSubmitBtn, validationObject)
-}
-
-function openProfilePopup() {
-  profileInputName.value = profileName.textContent;
-  profileInputJob.value = profileJob.textContent;
-  profileFormValidator.resetValidation()
-
-}
-
 
 profileEditBtn.addEventListener('click', function () {
   openProfilePopup(profilePopup);
@@ -155,51 +187,6 @@ profileEditBtn.addEventListener('click', function () {
 
 })
 
-
-function removePopupModifier(modal) {
-  modal.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleEscUp)
-}
-
-
-
-
-function handleSubmitProfileForm(evt) {
-  evt.preventDefault();
-  profileName.textContent = profileInputName.value;
-  profileJob.textContent = profileInputJob.value;
-  removePopupModifier(profilePopup);
-
-}
-
 profilePopupForm.addEventListener('submit', handleSubmitProfileForm);
 
-
-//функция отправки CardForm - Сохранить новую карточку
-//вызывается когда я нажимаю на кнопку сохранить
-function handleCardFormSubmit(evt) {
-  evt.preventDefault();
-
-  const cardName = cardPopupInputName.value;
-  const cardLink = cardPopupInputLink.value;
-
-  const cardWeJustCreated = addCardAndReturnAddedCard(cardName, cardLink);
-  //addCardImageClickListener(cardWeJustCreated)
-  createImagePopup(cardWeJustCreated)
-  removePopupModifier(cardPopup);
-
-}
 cardPopupForm.addEventListener('submit', handleCardFormSubmit);
-
-function createImagePopup(cardElement) {
-  const text = cardElement.querySelector('.element__name');
-  const cardImg = cardElement.querySelector('.element__image');
-  cardElement.alt = text.textContent;
-  imgPopupPicture.src = cardImg.src;
-  imgPopupName.textContent = text.textContent;
-  // openPopup(imgPopup);
-}
-function openImagePopap(cardElement) {
-  createImagePopup(cardElement);
-  openPopup(imgPopup);
-}

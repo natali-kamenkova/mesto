@@ -1,4 +1,4 @@
-.popup-image{
+.popup-image {
   position: fixed;
   top: 0;
   left: 0;
@@ -7,10 +7,10 @@
   background: rgba(0, 0, 0, 0.9);
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0.3s, opacity 0.5s linear;
 }
 
-.popup_opened{
-  visibility: visible;
+.popup_opened {
   opacity: 1;
+  visibility: visible;
 }
