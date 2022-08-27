@@ -7,21 +7,21 @@ export class FormValidator {
 
     console.log(this.buttonElement)
   }
-/*
-  _setEventListeners() {
-    this.formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      console.log('Все получится!!!!')
-    })
-  }
-
-  enableValidation() {
-    this._setEventListeners()
-  }*/
- 
+  /*
+    _setEventListeners() {
+      this.formElement.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        console.log('Все получится!!!!')
+      })
+    }
   
+    enableValidation() {
+      this._setEventListeners()
+    }*/
 
-    
+
+
+
   _hasInvalidInput() {
     // проходим по этому массиву методом some
     return this.inputList.some((inputElement) => {
@@ -46,11 +46,11 @@ export class FormValidator {
   _setEventListeners() {
 
     this._toggleButtonState();
-    
+
     this.inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._isValid();
-       this._toggleButtonState();
+        this._toggleButtonState();
       });
     });
   }
@@ -87,8 +87,8 @@ export class FormValidator {
 
   }
 
-  resetValidation(){
-    this.inputList.forEach((inputElement) =>{
+  resetValidation() {
+    this.inputList.forEach((inputElement) => {
       this._hideInputError(inputElement)
     })
   }
@@ -103,10 +103,9 @@ export class FormValidator {
     this.buttonElement.setAttribute('disabled', 'disabled');
   }
   enableValidation() {
-     this._setEventListeners(this.formElement)
+    this._setEventListeners(this.formElement)
   };
 
- 
 
 
 
@@ -114,8 +113,9 @@ export class FormValidator {
 
 
 
-   
-  
+
+
+
 }
 
 

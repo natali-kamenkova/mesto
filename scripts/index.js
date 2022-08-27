@@ -58,7 +58,7 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-]; 
+];
 
 
 
@@ -148,7 +148,7 @@ function createImagePopup(cardElement) {
   cardElement.alt = text.textContent;
   imgPopupPicture.src = cardImg.src;
   imgPopupName.textContent = text.textContent;
- 
+
 }
 function openImagePopap(cardElement) {
   createImagePopup(cardElement);
