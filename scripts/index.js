@@ -71,7 +71,7 @@ profileFormValidator.enableValidation();
 initialCards.forEach((cardData) => {
   const cardWeJustCreated = addCardAndReturnAddedCard(cardData.name, cardData.link);
 
-  createImagePopup(cardWeJustCreated)
+  initImagePopup(cardWeJustCreated)
 });
 
 function addCardAndReturnAddedCard(name, link) {
@@ -80,6 +80,8 @@ function addCardAndReturnAddedCard(name, link) {
   renderCard(cardElement);
   return cardElement;
 }
+
+
 
 function renderCard(card) {
   cardsContainer.prepend(card);
@@ -104,7 +106,7 @@ function handleEscUp(evt) {
 function openCardPopup() {
   cardPopupForm.reset();
   cardFormValidator.resetValidation()
-  cardFormValidator._disableButton(cardPopupSubmitBtn, validationObject)
+  cardFormValidator.disableButton(cardPopupSubmitBtn, validationObject)
 }
 
 function openProfilePopup() {
@@ -137,21 +139,21 @@ function handleCardFormSubmit(evt) {
   const cardName = cardPopupInputName.value;
   const cardLink = cardPopupInputLink.value;
   const cardWeJustCreated = addCardAndReturnAddedCard(cardName, cardLink);
-  createImagePopup(cardWeJustCreated)
+  initImagePopup(cardWeJustCreated)
   removePopupModifier(cardPopup);
 
 }
 
-function createImagePopup(cardElement) {
+function initImagePopup(cardElement) {
   const text = cardElement.querySelector('.element__name');
   const cardImg = cardElement.querySelector('.element__image');
-  cardElement.alt = text.textContent;
   imgPopupPicture.src = cardImg.src;
-  imgPopupName.textContent = text.textContent;
+  imgPopup.alt = text.textContent;
+    imgPopupName.textContent = text.textContent;
 
 }
 function openImagePopap(cardElement) {
-  createImagePopup(cardElement);
+  initImagePopup(cardElement);
   openPopup(imgPopup);
 }
 
@@ -172,6 +174,7 @@ cardPopup.addEventListener('click', function (evt) {
 imgPopup.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
     removePopupModifier(imgPopup)
+
   }
 })
 
@@ -190,3 +193,7 @@ profileEditBtn.addEventListener('click', function () {
 profilePopupForm.addEventListener('submit', handleSubmitProfileForm);
 
 cardPopupForm.addEventListener('submit', handleCardFormSubmit);
+
+
+
+

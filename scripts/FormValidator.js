@@ -7,17 +7,7 @@ export class FormValidator {
 
     console.log(this.buttonElement)
   }
-  /*
-    _setEventListeners() {
-      this.formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-        console.log('Все получится!!!!')
-      })
-    }
   
-    enableValidation() {
-      this._setEventListeners()
-    }*/
 
 
 
