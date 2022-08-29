@@ -1,38 +1,36 @@
 
 
 export class Card {
+  static _template = document.querySelector('#card-template').content;
 
-  constructor(name, link, openImageCallback) {
+  constructor(name, link, selector, openImageCallback) {
     this.name = name;
     this.link = link;
-    this.template = document.querySelector('#card-template').content.querySelector('.element');
+    this.selector = selector;
     this.openImageCallback = openImageCallback;
-
+    this._handleRemoveCard = this._handleRemoveCard.bind(this)
 
   }
 
 
   _getTemplate() {
-    const cardElement = this.template.cloneNode(true);
+    const cardElement = Card._template.querySelector('.element').cloneNode(true);
     return cardElement;
   }
 
   _handleLikeCard(evt) {
     evt.target.classList.toggle('element__like-btn_active');
   }
-  /*_handleRemoveCard() {
+  _handleRemoveCard() {
     this._element.remove()
-  }*/
-  
+  }
+
   _addEventListeners() {
     this._element.querySelector('.element__like-btn').addEventListener('click', this._handleLikeCard);
-   
 
-    /*this._element.querySelector('.element__reset-btn').addEventListener('click', this._handleRemoveCard)*/
 
-   this._element.querySelector('.element__reset-btn').addEventListener('click', () => {
-      this._element.remove();
-    });
+    this._element.querySelector('.element__reset-btn').addEventListener('click', this._handleRemoveCard);
+
 
 
     this._element.querySelector('.element__image').addEventListener('click', () => {

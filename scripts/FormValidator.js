@@ -5,11 +5,7 @@ export class FormValidator {
     this.inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
     this.buttonElement = formElement.querySelector(validationConfig.submitButtonSelector);
 
-    console.log(this.buttonElement)
   }
-  
-
-
 
 
   _hasInvalidInput() {
@@ -26,7 +22,7 @@ export class FormValidator {
     // Если есть хотя бы один невалидный инпут
     if (this._hasInvalidInput()) {
       // сделай кнопку неактивной
-      this._disableButton()
+      this.disableButton()
     } else {
       // иначе сделай кнопку активной
       this._enableButton();
@@ -88,7 +84,7 @@ export class FormValidator {
     this.buttonElement.removeAttribute('disabled');
   }
 
-  _disableButton() {
+  disableButton() {
     this.buttonElement.classList.add(this.validationConfig.inactiveButtonClass)
     this.buttonElement.setAttribute('disabled', 'disabled');
   }

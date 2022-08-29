@@ -31,6 +31,13 @@ const validationObject = {
   inactiveButtonClass: 'popup__submit_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__span_active'
+  
+}
+
+const selector = {
+  template: '#card-template',
+ /* name: '.element__name',
+  link: '.element__image'*/
 }
 
 const initialCards = [
@@ -69,19 +76,16 @@ profileFormValidator.enableValidation();
 
 
 initialCards.forEach((cardData) => {
-  const cardWeJustCreated = addCardAndReturnAddedCard(cardData.name, cardData.link);
-
+  const cardWeJustCreated = createCard(cardData.name, cardData.link);
+  renderCard(cardWeJustCreated);
   initImagePopup(cardWeJustCreated)
 });
 
-function addCardAndReturnAddedCard(name, link) {
-  const card = new Card(name, link, openImagePopap);
+function createCard(name, link) {
+  const card = new Card(name, link, selector, openImagePopap);
   const cardElement = card.generateCard();
-  renderCard(cardElement);
   return cardElement;
 }
-
-
 
 function renderCard(card) {
   cardsContainer.prepend(card);
@@ -132,16 +136,15 @@ function handleSubmitProfileForm(evt) {
 }
 
 
-//функция отправки CardForm - Сохранить новую карточку
-//вызывается когда я нажимаю на кнопку сохранить
+//добавление карточки из формы
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardPopupInputName.value;
   const cardLink = cardPopupInputLink.value;
-  const cardWeJustCreated = addCardAndReturnAddedCard(cardName, cardLink);
+  const cardWeJustCreated = createCard(cardName, cardLink);
+  renderCard(cardWeJustCreated)
   initImagePopup(cardWeJustCreated)
   removePopupModifier(cardPopup);
-
 }
 
 function initImagePopup(cardElement) {
