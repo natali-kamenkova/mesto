@@ -1,11 +1,10 @@
 
 
 export class Card {
- 
+
   constructor(name, link, selector, openImageCallback) {
     this.name = name;
     this.link = link;
-    //this.selector = selector;
     this._template = document.querySelector(selector).content
     this.openImageCallback = openImageCallback;
     this._handleRemoveCard = this._handleRemoveCard.bind(this)

@@ -38,7 +38,7 @@ const selectorTemplate = '#card-template';
 
 
 const initialCards = [
- 
+
   {
     name: 'Холмогорский район',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
@@ -47,25 +47,25 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   },
-  { 
-    name: 'Яффо', 
-    link: 'https://7d9e88a8-f178-4098-bea5-48d960920605.selcdn.net/4ef76ebb-714e-460c-886f-fc514226d278/' 
-  }, 
+  {
+    name: 'Яффо',
+    link: 'https://7d9e88a8-f178-4098-bea5-48d960920605.selcdn.net/4ef76ebb-714e-460c-886f-fc514226d278/'
+  },
 
-  { 
-    name: 'Лаба', 
-    link: 'https://anapacity.com/images/articles/big/reka-laba.jpg' 
-  }, 
+  {
+    name: 'Лаба',
+    link: 'https://anapacity.com/images/articles/big/reka-laba.jpg'
+  },
 
-  { 
-    name: 'Адыгея', 
-    link: 'https://kurort.yuga.ru/media/b2/f2/photo_2020-01-28_122338__k4d0vn5.jpg' 
-  }, 
+  {
+    name: 'Адыгея',
+    link: 'https://kurort.yuga.ru/media/b2/f2/photo_2020-01-28_122338__k4d0vn5.jpg'
+  },
 
-  { 
-    name: 'Ростов-на-Дону', 
-    link: 'https://34travel.me/media/upload/images/2019/march/rostov-na-donu/new/Depositphotos_201004458_s-2019.jpg' 
-  } 
+  {
+    name: 'Ростов-на-Дону',
+    link: 'https://34travel.me/media/upload/images/2019/march/rostov-na-donu/new/Depositphotos_201004458_s-2019.jpg'
+  }
 ];
 
 
