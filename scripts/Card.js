@@ -1,12 +1,12 @@
 
 
 export class Card {
-  static _template = document.querySelector('#card-template').content;
-
+ 
   constructor(name, link, selector, openImageCallback) {
     this.name = name;
     this.link = link;
-    this.selector = selector;
+    //this.selector = selector;
+    this._template = document.querySelector(selector).content
     this.openImageCallback = openImageCallback;
     this._handleRemoveCard = this._handleRemoveCard.bind(this)
 
@@ -14,7 +14,7 @@ export class Card {
 
 
   _getTemplate() {
-    const cardElement = Card._template.querySelector('.element').cloneNode(true);
+    const cardElement = this._template.querySelector('.element').cloneNode(true);
     return cardElement;
   }
 
@@ -34,7 +34,7 @@ export class Card {
 
 
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      this.openImageCallback(this._element)
+      this.openImageCallback(this.name, this.link)
     })
   }
 

@@ -59,7 +59,6 @@ export class FormValidator {
     const errorElement = this.formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this.validationConfig.inputErrorClass);
     errorElement.textContent = errorMessage;
-    console.log(errorElement.textContent)
     errorElement.classList.add(this.validationConfig.errorClass);
 
   }

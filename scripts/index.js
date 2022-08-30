@@ -31,32 +31,14 @@ const validationObject = {
   inactiveButtonClass: 'popup__submit_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__span_active'
-  
+
 }
 
-const selector = {
-  template: '#card-template',
- /* name: '.element__name',
-  link: '.element__image'*/
-}
+const selectorTemplate = '#card-template';
+
 
 const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
+ 
   {
     name: 'Холмогорский район',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
@@ -64,7 +46,26 @@ const initialCards = [
   {
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
+  },
+  { 
+    name: 'Яффо', 
+    link: 'https://7d9e88a8-f178-4098-bea5-48d960920605.selcdn.net/4ef76ebb-714e-460c-886f-fc514226d278/' 
+  }, 
+
+  { 
+    name: 'Лаба', 
+    link: 'https://anapacity.com/images/articles/big/reka-laba.jpg' 
+  }, 
+
+  { 
+    name: 'Адыгея', 
+    link: 'https://kurort.yuga.ru/media/b2/f2/photo_2020-01-28_122338__k4d0vn5.jpg' 
+  }, 
+
+  { 
+    name: 'Ростов-на-Дону', 
+    link: 'https://34travel.me/media/upload/images/2019/march/rostov-na-donu/new/Depositphotos_201004458_s-2019.jpg' 
+  } 
 ];
 
 
@@ -78,11 +79,11 @@ profileFormValidator.enableValidation();
 initialCards.forEach((cardData) => {
   const cardWeJustCreated = createCard(cardData.name, cardData.link);
   renderCard(cardWeJustCreated);
-  initImagePopup(cardWeJustCreated)
+  initImagePopup(cardData.name, cardData.link)
 });
 
 function createCard(name, link) {
-  const card = new Card(name, link, selector, openImagePopap);
+  const card = new Card(name, link, selectorTemplate, openImagePopap);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -136,27 +137,25 @@ function handleSubmitProfileForm(evt) {
 }
 
 
-//добавление карточки из формы
+//добавление карточки из
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardPopupInputName.value;
   const cardLink = cardPopupInputLink.value;
   const cardWeJustCreated = createCard(cardName, cardLink);
   renderCard(cardWeJustCreated)
-  initImagePopup(cardWeJustCreated)
+  initImagePopup(cardName, cardLink)
   removePopupModifier(cardPopup);
 }
 
-function initImagePopup(cardElement) {
-  const text = cardElement.querySelector('.element__name');
-  const cardImg = cardElement.querySelector('.element__image');
-  imgPopupPicture.src = cardImg.src;
-  imgPopup.alt = text.textContent;
-    imgPopupName.textContent = text.textContent;
+function initImagePopup(name, link) {
+  imgPopupPicture.src = link;
+  imgPopup.alt = name;
+  imgPopupName.textContent = name;
 
 }
-function openImagePopap(cardElement) {
-  initImagePopup(cardElement);
+function openImagePopap(name, link) {
+  initImagePopup(name, link);
   openPopup(imgPopup);
 }
 
