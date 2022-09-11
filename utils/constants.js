@@ -31,7 +31,7 @@ export const validationObject = {
 }
 
 export const selectorTemplate = '#card-template';
-
+export const containerSelector = '.elements'
 
 export const initialCards = [
 
