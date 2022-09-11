@@ -1,5 +1,4 @@
 
-
 export class Card {
 
   constructor(name, link, selector, openImageCallback) {

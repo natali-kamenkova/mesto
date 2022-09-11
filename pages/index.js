@@ -1,8 +1,12 @@
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import {profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob} from "../utils/constants.js";
+import {profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardPopupInputLink} from "../utils/constants.js";
+import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, initialCards} from "../utils/constants.js";
 
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
 
-const profilePopup = document.querySelector('.popup-profile');
+
+/*const profilePopup = document.querySelector('.popup-profile');
 const cardPopup = document.querySelector('.popup-cards');
 const imgPopup = document.querySelector('.popup-image');
 const profileEditBtn = document.querySelector('.profile__edit-btn');
@@ -66,7 +70,7 @@ const initialCards = [
     name: 'Ростов-на-Дону',
     link: 'https://34travel.me/media/upload/images/2019/march/rostov-na-donu/new/Depositphotos_201004458_s-2019.jpg'
   }
-];
+];*/
 
 
 
