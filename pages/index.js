@@ -88,8 +88,11 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const cardName = cardPopupInputName.value;
   const cardLink = cardPopupInputLink.value;
-  const cardWeJustCreated = createCard(cardName, cardLink);
-  renderCard(cardWeJustCreated)
+  //const cardWeJustCreated = createCard(cardName, cardLink);
+  //renderCard(cardWeJustCreated)
+  const card = new Card(cardName, cardLink, selectorTemplate, openImagePopap);
+  const cardElement = card.generateCard();
+  section.addItem(cardElement)
   initImagePopup(cardName, cardLink)
   removePopupModifier(cardPopup);
 }
