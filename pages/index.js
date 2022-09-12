@@ -2,8 +2,10 @@ import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import {profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob} from "../utils/constants.js";
 import {profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardPopupInputLink} from "../utils/constants.js";
-import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector ,initialCards} from "../utils/constants.js";
+import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector ,initialCards, popupSelector} from "../utils/constants.js";
 import { Section } from "../components/Section.js";
+//import { Popup } from "../components/Popup";
+
 
 
 const section = new Section({items: initialCards, renderer: rendererCallback}, containerSelector);
@@ -13,27 +15,30 @@ cardFormValidator.enableValidation();
 const profileFormValidator = new FormValidator(validationObject, profilePopupForm);
 profileFormValidator.enableValidation();
 
-//initialCards.forEach((cardData) => {
-  //const cardWeJustCreated = createCard(cardData.name, cardData.link);
-  //renderCard(cardWeJustCreated);
-  //initImagePopup(cardData.name, cardData.link)
-//});
+initialCards.forEach((cardData) => {
+ // const cardWeJustCreated = createCard(cardData.name, cardData.link);
+ // renderCard(cardWeJustCreated);
+  initImagePopup(cardData.name, cardData.link)
+});
 
 function rendererCallback(cardData) {  
-  const cardWeJustCreated = createCard(cardData.name, cardData.link);
-  renderCard(cardWeJustCreated);
+ // const cardWeJustCreated = createCard(cardData.name, cardData.link);
+  //renderCard(cardWeJustCreated);
+  const card = new Card(cardData.name, cardData.link, selectorTemplate, openImagePopap);
+  const cardElement = card.generateCard();
+  section.addItem(cardElement)
   initImagePopup(cardData.name, cardData.link)
 }
-
+/*
 function createCard(name, link) {
   const card = new Card(name, link, selectorTemplate, openImagePopap);
   const cardElement = card.generateCard();
   return cardElement;
-}
+}*/
 
-function renderCard(card) {
+/*function renderCard(card) {
   cardsContainer.prepend(card);
-}
+}*/
 
 function openPopup(modal) {
   modal.classList.add('popup_opened');
