@@ -1,4 +1,4 @@
-/*export class Popup {
+export class Popup {
   constructor(popupSelector) {
    this.selectorPopup = document.querySelector(popupSelector)
   }
@@ -18,4 +18,4 @@
 
   }
 
-}*/
+}

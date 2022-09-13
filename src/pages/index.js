@@ -20,7 +20,7 @@ initialCards.forEach((cardData) => {
  // renderCard(cardWeJustCreated);
   //initImagePopup(cardData.name, cardData.link)
 });*/
-
+/*
 function rendererCallback(cardData) {  
  // const cardWeJustCreated = createCard(cardData.name, cardData.link);
   //renderCard(cardWeJustCreated);
@@ -28,13 +28,20 @@ function rendererCallback(cardData) {
   const cardElement = card.generateCard();
   section.addItem(cardElement)
  // initImagePopup(cardData.name, cardData.link)
+}*/
+
+function rendererCallback(cardData) {  
+  const cardWeJustCreated = createCard(cardData.name, cardData.link);
+  section.addItem(cardWeJustCreated)
+  initImagePopup(cardData.name, cardData.link)
+
 }
-/*
+
 function createCard(name, link) {
   const card = new Card(name, link, selectorTemplate, openImagePopap);
   const cardElement = card.generateCard();
   return cardElement;
-}*/
+}
 
 /*function renderCard(card) {
   cardsContainer.prepend(card);
