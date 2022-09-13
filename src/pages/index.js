@@ -14,12 +14,12 @@ const cardFormValidator = new FormValidator(validationObject, cardPopupForm);
 cardFormValidator.enableValidation();
 const profileFormValidator = new FormValidator(validationObject, profilePopupForm);
 profileFormValidator.enableValidation();
-
+/*
 initialCards.forEach((cardData) => {
  // const cardWeJustCreated = createCard(cardData.name, cardData.link);
  // renderCard(cardWeJustCreated);
-  initImagePopup(cardData.name, cardData.link)
-});
+  //initImagePopup(cardData.name, cardData.link)
+});*/
 
 function rendererCallback(cardData) {  
  // const cardWeJustCreated = createCard(cardData.name, cardData.link);
@@ -27,7 +27,7 @@ function rendererCallback(cardData) {
   const card = new Card(cardData.name, cardData.link, selectorTemplate, openImagePopap);
   const cardElement = card.generateCard();
   section.addItem(cardElement)
-  initImagePopup(cardData.name, cardData.link)
+ // initImagePopup(cardData.name, cardData.link)
 }
 /*
 function createCard(name, link) {
