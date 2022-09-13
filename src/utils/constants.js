@@ -33,6 +33,9 @@ export const validationObject = {
 export const selectorTemplate = '#card-template';
 export const containerSelector = '.elements';
 export const popupSelector = '.popup';
+export const popupProfileSelector ='.popup-profile';
+export const popupCardSelector = '.popup-cards';
+export const popupImageSelector = '.popup-image';
 
 export const initialCards = [
 

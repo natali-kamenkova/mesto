@@ -2,38 +2,29 @@ import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import {profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob} from "../utils/constants.js";
 import {profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardPopupInputLink} from "../utils/constants.js";
-import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector ,initialCards, popupSelector} from "../utils/constants.js";
+import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector ,initialCards, popupProfileSelector, popupCardSelector, popupImageSelector} from "../utils/constants.js";
 import { Section } from "../components/Section.js";
-//import { Popup } from "../components/Popup";
+import { Popup } from "../components/Popup.js";
 
 
-
+const popupProfile = new Popup(popupProfileSelector);
+const popupCards = new Popup(popupCardSelector);
+const popupImage = new Popup(popupImageSelector);
+popupProfile.setEventListeners();
+popupCards .setEventListeners();
+popupImage.setEventListeners();
 const section = new Section({items: initialCards, renderer: rendererCallback}, containerSelector);
 section.renderer()
 const cardFormValidator = new FormValidator(validationObject, cardPopupForm);
 cardFormValidator.enableValidation();
 const profileFormValidator = new FormValidator(validationObject, profilePopupForm);
 profileFormValidator.enableValidation();
-/*
-initialCards.forEach((cardData) => {
- // const cardWeJustCreated = createCard(cardData.name, cardData.link);
- // renderCard(cardWeJustCreated);
-  //initImagePopup(cardData.name, cardData.link)
-});*/
-/*
-function rendererCallback(cardData) {  
- // const cardWeJustCreated = createCard(cardData.name, cardData.link);
-  //renderCard(cardWeJustCreated);
-  const card = new Card(cardData.name, cardData.link, selectorTemplate, openImagePopap);
-  const cardElement = card.generateCard();
-  section.addItem(cardElement)
- // initImagePopup(cardData.name, cardData.link)
-}*/
+
 
 function rendererCallback(cardData) {  
   const cardWeJustCreated = createCard(cardData.name, cardData.link);
   section.addItem(cardWeJustCreated)
-  initImagePopup(cardData.name, cardData.link)
+ // initImagePopup(cardData.name, cardData.link)
 
 }
 
@@ -43,22 +34,20 @@ function createCard(name, link) {
   return cardElement;
 }
 
-/*function renderCard(card) {
-  cardsContainer.prepend(card);
-}*/
 
-function openPopup(modal) {
+
+/*function openPopup(modal) {
   modal.classList.add('popup_opened');
   document.addEventListener('keyup', handleEscUp);
-}
+}*/
 
-function handleEscUp(evt) {
+/*function handleEscUp(evt) {
   evt.preventDefault();
   if (evt.key === 'Escape') {
     const activePopup = document.querySelector('.popup_opened');
     removePopupModifier(activePopup);
   }
-}
+}*/
 
 
 function openCardPopup() {
@@ -75,17 +64,17 @@ function openProfilePopup() {
 }
 
 
-function removePopupModifier(modal) {
+/*function removePopupModifier(modal) {
   modal.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscUp)
-}
+}*/
 
 
 function handleSubmitProfileForm(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value;
   profileJob.textContent = profileInputJob.value;
-  removePopupModifier(profilePopup);
+  popupProfile.close();
 
 }
 
@@ -101,7 +90,7 @@ function handleCardFormSubmit(evt) {
   const cardElement = card.generateCard();
   section.addItem(cardElement)
   initImagePopup(cardName, cardLink)
-  removePopupModifier(cardPopup);
+  popupCards.close();
 }
 
 function initImagePopup(name, link) {
@@ -112,10 +101,11 @@ function initImagePopup(name, link) {
 }
 function openImagePopap(name, link) {
   initImagePopup(name, link);
-  openPopup(imgPopup);
+  popupImage.open();
+ 
 }
 
-
+/*
 profilePopup.addEventListener('click', function (evt) {
   if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
     removePopupModifier(profilePopup)
@@ -134,17 +124,17 @@ imgPopup.addEventListener('click', function (evt) {
     removePopupModifier(imgPopup)
 
   }
-})
+})*/
 
 cardPopupBtn.addEventListener('click', function () {
-  openPopup(cardPopup);
+  popupCards.open();
   openCardPopup()
 
 });
 
 profileEditBtn.addEventListener('click', function () {
   openProfilePopup(profilePopup);
-  openPopup(profilePopup);
+  popupProfile.open();
 
 })
 
