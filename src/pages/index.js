@@ -1,11 +1,19 @@
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import {profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob} from "../utils/constants.js";
-import {profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardPopupInputLink} from "../utils/constants.js";
+import {profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector} from "../utils/constants.js";
+import {profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardPopupInputLink, profileFormSelector} from "../utils/constants.js";
 import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector ,initialCards, popupProfileSelector, popupCardSelector, popupImageSelector} from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
+import { UserInfo } from "../components/UserInfo.js";
+import {PopupWithForm} from "../components/PopupWithForm.js";
 
+
+const popupProfileWithForm = new PopupWithForm(popupProfileSelector, profileFormSelector, handleSubmitProfileForm);
+popupProfileWithForm.setEventListeners();
+
+const userInfo = new UserInfo({profileNameSelector, profileJobSelector});
+//userInfo.getUserInfo()
 
 const popupProfile = new Popup(popupProfileSelector);
 const popupCards = new Popup(popupCardSelector);
@@ -13,8 +21,10 @@ const popupImage = new Popup(popupImageSelector);
 popupProfile.setEventListeners();
 popupCards .setEventListeners();
 popupImage.setEventListeners();
+
 const section = new Section({items: initialCards, renderer: rendererCallback}, containerSelector);
 section.renderer()
+
 const cardFormValidator = new FormValidator(validationObject, cardPopupForm);
 cardFormValidator.enableValidation();
 const profileFormValidator = new FormValidator(validationObject, profilePopupForm);
@@ -57,8 +67,10 @@ function openCardPopup() {
 }
 
 function openProfilePopup() {
-  profileInputName.value = profileName.textContent;
+  
+profileInputName.value = profileName.textContent;
   profileInputJob.value = profileJob.textContent;
+
   profileFormValidator.resetValidation()
 
 }
@@ -69,13 +81,19 @@ function openProfilePopup() {
   document.removeEventListener('keydown', handleEscUp)
 }*/
 
-
+/*
 function handleSubmitProfileForm(evt) {
   evt.preventDefault();
-  profileName.textContent = profileInputName.value;
+ 
+ profileName.textContent = profileInputName.value;
   profileJob.textContent = profileInputJob.value;
   popupProfile.close();
 
+}*/
+
+function handleSubmitProfileForm(formDataObject) {
+  console.log(formDataObject)
+  userInfo.setUserInfo(formDataObject);
 }
 
 
