@@ -25,14 +25,14 @@ profileFormValidator.enableValidation();
 
 
 function rendererCallback(cardData) {  
-  const cardWeJustCreated = createCard(cardData.name, cardData.link);
+  const cardWeJustCreated = createCard(cardData);
   section.addItem(cardWeJustCreated)
  // initImagePopup(cardData.name, cardData.link)
 
 }
 
-function createCard(name, link) {
-  const card = new Card(name, link, selectorTemplate, openImagePopap);
+function createCard(cardData ) {
+  const card = new Card(cardData.name, cardData.link, selectorTemplate, openImagePopap);
   const cardElement = card.generateCard();
   return cardElement;
 }
