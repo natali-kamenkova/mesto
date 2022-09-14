@@ -5,13 +5,16 @@ import {profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm
 import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector ,initialCards, popupProfileSelector, popupCardSelector, popupImageSelector} from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
 
+const popupAddCard = new PopupWithForm(popupCardSelector, '.popup__form_card', handleCardFormSubmit);
+popupAddCard.setEventListeners();
 
 const popupProfile = new Popup(popupProfileSelector);
 const popupCards = new Popup(popupCardSelector);
 const popupImage = new Popup(popupImageSelector);
 popupProfile.setEventListeners();
-popupCards .setEventListeners();
+//popupCards .setEventListeners();
 popupImage.setEventListeners();
 const section = new Section({items: initialCards, renderer: rendererCallback}, containerSelector);
 section.renderer()
@@ -92,6 +95,16 @@ function handleCardFormSubmit(evt) {
   initImagePopup(cardName, cardLink)
   popupCards.close();
 }
+
+/*function handleCardFormSubmit(formDataObject) {
+ 
+  
+  section.addItem(createCard(formDataObject.name, formDataObject.link))
+  popupAddCard.close()
+}*/
+
+
+
 
 function initImagePopup(name, link) {
   imgPopupPicture.src = link;
