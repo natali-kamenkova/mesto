@@ -38,7 +38,8 @@ export const popupCardSelector = '.popup-cards';
 export const popupImageSelector = '.popup-image';
 export const profileNameSelector = '.profile__name';
 export const profileJobSelector = '.profile__profession';
-export const profileFormSelector = '.popup__form_profile'
+export const profileFormSelector = '.popup__form_profile';
+export const cardFormSelector = '.popup__form_card';
 
 export const initialCards = [
 

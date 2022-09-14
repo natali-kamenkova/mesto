@@ -1,7 +1,7 @@
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import {profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector} from "../utils/constants.js";
-import {profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardPopupInputLink, profileFormSelector} from "../utils/constants.js";
+import {profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName,cardFormSelector, cardPopupInputLink, profileFormSelector} from "../utils/constants.js";
 import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector ,initialCards, popupProfileSelector, popupCardSelector, popupImageSelector} from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
@@ -11,7 +11,8 @@ import {PopupWithForm} from "../components/PopupWithForm.js";
 
 const popupProfileWithForm = new PopupWithForm(popupProfileSelector, profileFormSelector, handleSubmitProfileForm);
 popupProfileWithForm.setEventListeners();
-
+const popupCardWithForm = new PopupWithForm(popupCardSelector, cardFormSelector,handleCardFormSubmit);
+popupCardWithForm.setEventListeners();
 const userInfo = new UserInfo({profileNameSelector, profileJobSelector});
 //userInfo.getUserInfo()
 
@@ -98,16 +99,17 @@ function handleSubmitProfileForm(formDataObject) {
 
 
 //добавление карточки из
-function handleCardFormSubmit(evt) {
-  evt.preventDefault();
-  const cardName = cardPopupInputName.value;
-  const cardLink = cardPopupInputLink.value;
+function handleCardFormSubmit(formDataObject) {
+ // evt.preventDefault();
+ // const cardName = cardPopupInputName.value;
+ // const cardLink = cardPopupInputLink.value;
   //const cardWeJustCreated = createCard(cardName, cardLink);
   //renderCard(cardWeJustCreated)
-  const card = new Card(cardName, cardLink, selectorTemplate, openImagePopap);
-  const cardElement = card.generateCard();
-  section.addItem(cardElement)
-  initImagePopup(cardName, cardLink)
+ // const card = new Card(cardName, cardLink, selectorTemplate, openImagePopap);
+  //const cardElement = card.generateCard();
+  createCard(formDataObject)
+  section.addItem(formDataObject)
+  initImagePopup(formDataObject.name, formDataObject.link)
   popupCards.close();
 }
 
