@@ -38,10 +38,10 @@
       <button class="popup__close" type="button" aria-label="close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="dataEditing" action="#" class="popup__form popup__form_profile" novalidate>
-        <input id="popup__span_name" type="text" class="popup__input popup__input_type_name" value="Жак-Ив Кусто"
+        <input id="popup__span_name" type="text" class="popup__input popup__input_type_name" name="name"  value="Жак-Ив Кусто"
           minlength="2" maxlength="40" required>
         <span class="popup__span popup__span_name-error"></span>
-        <input id="popup__span_job" type="text" class="popup__input popup__input_type_job" value="Исследователь океана"
+        <input id="popup__span_job" type="text" class="popup__input popup__input_type_job" name="job"  value="Исследователь океана"
           minlength="2" maxlength="200" required>
         <span class="popup__span popup__span_job-error"></span>
         <button type="submit" class="popup__submit">Сохранить</button>
@@ -52,7 +52,11 @@
     <div class="popup__container popup__container_form">
       <button class="popup__close" type="button" aria-label="close"></button>
       <h2 class="popup__title">Новое место</h2>
+<<<<<<< HEAD
       <form name="addingСard" action="#"   class="popup__form popup__form_card" novalidate>
+=======
+      <form name="addingСard" action="#" class="popup__form popup__form_card" novalidate>
+>>>>>>> proba
         <input id="popup__span_card-name" type="text"  name="name" class="popup__input popup__input_type_card-name"
           placeholder="Название" minlength="2" required>
         <span class="popup__span popup__span_card-name-error">Вы пропустили данное поле</span>
