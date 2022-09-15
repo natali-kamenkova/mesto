@@ -19,7 +19,6 @@ popupCardWithForm.setEventListeners();
 const userInfo = new UserInfo({ profileNameSelector, profileJobSelector });
 
 
-//const popupImage = new Popup(popupImageSelector);
 
 popupWithImage.setEventListeners();
 
