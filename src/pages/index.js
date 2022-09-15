@@ -34,8 +34,6 @@ profileFormValidator.enableValidation();
 function rendererCallback(cardData) {
   const cardWeJustCreated = createCard(cardData);
   section.addItem(cardWeJustCreated)
-
-
 }
 
 function createCard(cardData) {
