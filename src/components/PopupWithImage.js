@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-  import { Popup } from "./Popup.js";
-
-export class PopupWithImage extends Popup {
-
-=======
 import { Popup } from "./Popup.js";
 
 export class PopupWithImage extends Popup{
@@ -12,5 +6,4 @@ export class PopupWithImage extends Popup{
      this._popup.querySelector('.popup-image__title').textContent = name;
      super.open();
    }
->>>>>>> proba
 }

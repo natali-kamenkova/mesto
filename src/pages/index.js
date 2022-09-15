@@ -5,12 +5,6 @@ import {profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm
 import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector ,initialCards, popupProfileSelector, popupCardSelector, popupImageSelector} from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
-<<<<<<< HEAD
-import { PopupWithForm } from "../components/PopupWithForm.js";
-
-const popupAddCard = new PopupWithForm(popupCardSelector, '.popup__form_card', handleCardFormSubmit);
-popupAddCard.setEventListeners();
-=======
 import { UserInfo } from "../components/UserInfo.js";
 import {PopupWithForm} from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
@@ -20,15 +14,8 @@ popupProfileWithForm.setEventListeners();
 const popupCardWithForm = new PopupWithForm(popupCardSelector, cardFormSelector,handleCardFormSubmit);
 popupCardWithForm.setEventListeners();
 const userInfo = new UserInfo({profileNameSelector, profileJobSelector});
->>>>>>> proba
 
 const popupImage = new Popup(popupImageSelector);
-<<<<<<< HEAD
-popupProfile.setEventListeners();
-//popupCards .setEventListeners();
-=======
-
->>>>>>> proba
 popupImage.setEventListeners();
 
 const section = new Section({items: initialCards, renderer: rendererCallback}, containerSelector);
