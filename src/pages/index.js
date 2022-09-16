@@ -49,8 +49,8 @@ function openCardPopup() {
 }
 
 function openProfilePopup() {
-  profileInputName.value = profileName.textContent;
-  profileInputJob.value = profileJob.textContent;
+  profileInputName.value = userInfo.getUserInfo().name;
+  profileInputJob.value = userInfo.getUserInfo().job;
   profileFormValidator.resetValidation()
 
 }
