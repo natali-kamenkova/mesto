@@ -1,3 +1,4 @@
+import './index.css'
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector } from "../utils/constants.js";
@@ -49,8 +50,8 @@ function openCardPopup() {
 }
 
 function openProfilePopup() {
-  profileInputName.value = profileName.textContent;
-  profileInputJob.value = profileJob.textContent;
+  profileInputName.value = userInfo.getUserInfo().name;
+  profileInputJob.value = userInfo.getUserInfo().job;
   profileFormValidator.resetValidation()
 
 }
