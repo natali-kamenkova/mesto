@@ -1,3 +1,4 @@
+import './index.css'
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector } from "../utils/constants.js";
