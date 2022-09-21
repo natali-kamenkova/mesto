@@ -37,7 +37,7 @@ export class Card {
   }
 
 
-
+// возвращает полностью работоспособный и наполненный данными элемент карточки.
   generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector('.element__name').textContent = this.name;

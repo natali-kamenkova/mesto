@@ -41,6 +41,7 @@ export class FormValidator {
     });
   }
 
+  //: проверяет валидность поля
   _isValid() {
     this.inputList.forEach((inputElement) => {
       if (!inputElement.validity.valid) {
@@ -77,16 +78,18 @@ export class FormValidator {
       this._hideInputError(inputElement)
     })
   }
-
+//изменяет состояние кнопки сабмита
   _enableButton() {
     this.buttonElement.classList.remove(this.validationConfig.inactiveButtonClass);
     this.buttonElement.removeAttribute('disabled');
   }
-
+//изменяет состояние кнопки сабмита
   disableButton() {
     this.buttonElement.classList.add(this.validationConfig.inactiveButtonClass)
     this.buttonElement.setAttribute('disabled', 'disabled');
   }
+
+  // включает валидацию формы.
   enableValidation() {
     this._setEventListeners(this.formElement)
   };

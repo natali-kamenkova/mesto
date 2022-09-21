@@ -6,6 +6,7 @@ export class UserInfo {
     this._job = document.querySelector(profileJobSelector);
   }
 
+  // возвращает объект с данными пользователя
   getUserInfo() {
     
     return {
@@ -15,6 +16,7 @@ export class UserInfo {
     
   }
 
+  // принимает новые данные пользователя и добавляет их на страницу.
   setUserInfo(formData){
     
    this._name.textContent = formData.name;
