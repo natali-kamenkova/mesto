@@ -16,9 +16,12 @@ export class Card {
     return cardElement;
   }
 
+  //обработчик лайка
   _handleLikeCard(evt) {
     evt.target.classList.toggle('element__like-btn_active');
   }
+
+  //удаление карточки
   _handleRemoveCard() {
     this._element.remove()
   }
@@ -37,7 +40,7 @@ export class Card {
   }
 
 
-// возвращает полностью работоспособный и наполненный данными элемент карточки.
+  // возвращает полностью работоспособный и наполненный данными элемент карточки.
   generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector('.element__name').textContent = this.name;
