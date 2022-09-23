@@ -40,6 +40,7 @@ export const profileNameSelector = '.profile__name';
 export const profileJobSelector = '.profile__profession';
 export const profileFormSelector = '.popup__form_profile';
 export const cardFormSelector = '.popup__form_card';
+export const popupDeleteSelector = '.popup-delete';
 
 export const initialCards = [
 

@@ -1,13 +1,13 @@
 
 export class Card {
 
-  constructor(name, link, selector, openImageCallback) {
+  constructor(name, link, selector, openImageCallback, openDeletCallback) {
     this.name = name;
     this.link = link;
     this._template = document.querySelector(selector).content
     this.openImageCallback = openImageCallback;
-    this._handleRemoveCard = this._handleRemoveCard.bind(this)
-
+    //this._handleRemoveCard = this._handleRemoveCard.bind(this)
+    this.openDeletCallback = openDeletCallback;
   }
 
 
@@ -27,10 +27,12 @@ export class Card {
     this._element.querySelector('.element__like-btn').addEventListener('click', this._handleLikeCard);
 
 
-    this._element.querySelector('.element__reset-btn').addEventListener('click', this._handleRemoveCard);
-
-
-
+    this._element.querySelector('.element__reset-btn').addEventListener('click', ()=>{
+      this.openDeletCallback()
+    } );
+      
+     
+   
     this._element.querySelector('.element__image').addEventListener('click', () => {
       this.openImageCallback(this.name, this.link)
     })

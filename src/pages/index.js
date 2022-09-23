@@ -2,15 +2,18 @@ import './index.css'
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector } from "../utils/constants.js";
-import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, cardPopupInputLink, profileFormSelector } from "../utils/constants.js";
+import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, cardPopupInputLink, profileFormSelector, popupDeleteSelector } from "../utils/constants.js";
 import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupDelete } from "../components/PopupDelete.js";
 
 
+const popupDelete = new Popup(popupDeleteSelector);
+popupDelete.setEventListeners();
 const popupWithImage = new PopupWithImage(popupImageSelector)
 
 const popupProfileWithForm = new PopupWithForm(popupProfileSelector, profileFormSelector, handleSubmitProfileForm);
@@ -37,9 +40,13 @@ function rendererCallback(cardData) {
 }
 
 function createCard(cardData) {
-  const card = new Card(cardData.name, cardData.link, selectorTemplate, openImagePopap);
+  const card = new Card(cardData.name, cardData.link, selectorTemplate, openImagePopap, openDeletePopup);
   const cardElement = card.generateCard();
   return cardElement;
+}
+
+function openDeletePopup(){
+  popupDelete.open();
 }
 
 
@@ -88,7 +95,6 @@ profileEditBtn.addEventListener('click', function () {
   popupProfileWithForm.open();
 
 })
-
 
 
 
