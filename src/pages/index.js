@@ -10,8 +10,23 @@ import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupDelete } from "../components/PopupDelete.js";
+import { Api } from '../components/Api';
 
+const config = { url: 'https://mesto.nomoreparties.co/v1/cohort-51',
+headers: {
+  authorization: 'c14fd4d2-b83b-4faf-994c-ea33775685d1',
+  "Content-Type": "application/json"
+}}
 
+const api = new Api(config)
+ api.getInitialCards()
+ .then(function(data){
+  console.log(data)
+})
+.catch(function(err){
+  console.log(err)
+})
+ 
 const popupDelete = new Popup(popupDeleteSelector);
 popupDelete.setEventListeners();
 const popupWithImage = new PopupWithImage(popupImageSelector)
