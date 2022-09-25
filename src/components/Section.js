@@ -1,6 +1,6 @@
 export class Section {
-  constructor({ items, renderer }, containerSelector) {
-    this.items = items;
+  constructor( renderer , containerSelector) {
+    //this.items = items;
     this.rendererCallback = renderer;
     this.container = document.querySelector(containerSelector);
   }
@@ -11,8 +11,8 @@ export class Section {
   }
 
   //Отрисовка каждого отдельного элемента
-  renderer() {
-    this.items.forEach(element => {
+  renderer(cardsArray) {
+    cardsArray.forEach(element => {
       this.rendererCallback(element)
     });
   }

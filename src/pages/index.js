@@ -2,7 +2,7 @@ import './index.css'
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector } from "../utils/constants.js";
-import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, cardPopupInputLink, profileFormSelector, popupDeleteSelector } from "../utils/constants.js";
+import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector } from "../utils/constants.js";
 import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
@@ -19,15 +19,21 @@ headers: {
 }}
 
 const api = new Api(config)
+
  api.getInitialCards()
  .then(function(data){
+  section.renderer(data)
   console.log(data)
+  
 })
 .catch(function(err){
   console.log(err)
 })
+
+//api.removeCard()
+
  
-const popupDelete = new Popup(popupDeleteSelector);
+const popupDelete = new PopupDelete(popupDeleteSelector);
 popupDelete.setEventListeners();
 const popupWithImage = new PopupWithImage(popupImageSelector)
 
@@ -40,8 +46,8 @@ const userInfo = new UserInfo({ profileNameSelector, profileJobSelector });
 
 popupWithImage.setEventListeners();
 
-const section = new Section({ items: initialCards, renderer: rendererCallback }, containerSelector);
-section.renderer()
+const section = new Section(  rendererCallback , containerSelector);
+//section.renderer(initialCards)
 
 const cardFormValidator = new FormValidator(validationObject, cardPopupForm);
 cardFormValidator.enableValidation();
@@ -55,12 +61,21 @@ function rendererCallback(cardData) {
 }
 
 function createCard(cardData) {
-  const card = new Card(cardData.name, cardData.link, selectorTemplate, openImagePopap, openDeletePopup);
+  const card = new Card(cardData, selectorTemplate, openImagePopap, openDeletePopup);
   const cardElement = card.generateCard();
   return cardElement;
 }
 
-function openDeletePopup(){
+console.log(popupDelete)
+
+function openDeletePopup(cardInst){
+ popupDelete.setSubmitAction(()=>{
+  console.log()
+  api.removeCard(cardInst.getId())
+  .then(()=>{
+    cardInst.handleRemoveCard()
+  })
+})
   popupDelete.open();
 }
 
@@ -94,6 +109,7 @@ function handleCardFormSubmit(formDataObject) {
 }
 
 
+
 function openImagePopap(name, link) {
   popupWithImage.open({ name, link });
 
@@ -110,6 +126,8 @@ profileEditBtn.addEventListener('click', function () {
   popupProfileWithForm.open();
 
 })
+
+
 
 
 

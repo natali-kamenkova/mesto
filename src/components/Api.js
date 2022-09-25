@@ -8,14 +8,13 @@ export class Api {
     return fetch(`${this._url}/cards`, {
       headers: this._headers
     })
-    .then(function(res){
-      return res.json()
-    })
-    /*.then(function(data){
-      console.log(data)
-    })*/
-      
+      .then(function (res) {
+        return res.json()
+      })
+  
+
   }
+
 
   /*getInitialCards() {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-51/cards', {
@@ -29,7 +28,18 @@ export class Api {
       });
   }*/
 
- 
- 
+  removeCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(function (res) {
+        return res.json()
+      })
+
+  }
+
+
+
 }
 
