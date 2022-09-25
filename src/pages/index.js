@@ -27,7 +27,7 @@ const api = new Api(config)
   
 })
 .catch(function(err){
-  console.log(err)
+  console.log('Ошибка', err)
 })
 
 //api.removeCard()
@@ -75,6 +75,9 @@ function openDeletePopup(cardInst){
   .then(()=>{
     cardInst.handleRemoveCard()
   })
+  .catch(function(err){
+    console.log('Ошибка', err)
+  })
 })
   popupDelete.open();
 }
@@ -102,10 +105,19 @@ function handleSubmitProfileForm(formDataObject) {
 
 //добавление карточки из
 function handleCardFormSubmit(formDataObject) {
-
+api.addCard(formDataObject)
+.then(function(dataFromServer){
   const card = createCard(formDataObject)
   section.addItem(card)
   popupCardWithForm.close();
+})
+.catch(function(err){
+  console.log('Ошибка', err)
+})
+ /* const card = createCard(formDataObject)
+  section.addItem(card)
+ // console.log(formDataObject.name)
+  popupCardWithForm.close();*/
 }
 
 

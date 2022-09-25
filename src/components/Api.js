@@ -6,27 +6,20 @@ export class Api {
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
+      method: 'GET',
       headers: this._headers
     })
       .then(function (res) {
-        return res.json()
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject({ message: 'Ошибка на стороне сервера', res })
+
       })
-  
+
 
   }
 
-
-  /*getInitialCards() {
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-51/cards', {
-      headers: {
-        authorization: 'c14fd4d2-b83b-4faf-994c-ea33775685d1'
-      }
-    })
-      .then(res => res.json())
-      .then((result) => {
-        console.log(result);
-      });
-  }*/
 
   removeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
@@ -34,7 +27,28 @@ export class Api {
       headers: this._headers
     })
       .then(function (res) {
-        return res.json()
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject({ message: 'Ошибка на стороне сервера', res })
+      })
+
+  }
+
+  addCard(data){
+    return fetch(`${this._url}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
+    })
+      .then(function (res) {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject({ message: 'Ошибка на стороне сервера', res })
       })
 
   }
