@@ -1,8 +1,8 @@
 import './index.css'
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector } from "../utils/constants.js";
-import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector, profileAvatar } from "../utils/constants.js";
+import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector, avatarPopup, avatarPopupForm , avatarPopupSubmitBtn, avatarPopupInput } from "../utils/constants.js";
+import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector, profileAvatar, popupAvatarSelector, avatarFormSelector, openAvatarPopupBtn } from "../utils/constants.js";
 import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
@@ -11,6 +11,8 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupDelete } from "../components/PopupDelete.js";
 import { Api } from '../components/Api';
+import { data } from 'autoprefixer';
+
 
 const config = { url: 'https://mesto.nomoreparties.co/v1/cohort-51',
 headers: {
@@ -51,6 +53,9 @@ const popupProfileWithForm = new PopupWithForm(popupProfileSelector, profileForm
 popupProfileWithForm.setEventListeners();
 const popupCardWithForm = new PopupWithForm(popupCardSelector, cardFormSelector, handleCardFormSubmit);
 popupCardWithForm.setEventListeners();
+const popupAvatarWithForm = new PopupWithForm(popupAvatarSelector, avatarFormSelector, handleAvatarFormSubmit);
+popupAvatarWithForm .setEventListeners();
+
 const userInfo = new UserInfo({ profileNameSelector, profileJobSelector });
 
 
@@ -63,6 +68,9 @@ const cardFormValidator = new FormValidator(validationObject, cardPopupForm);
 cardFormValidator.enableValidation();
 const profileFormValidator = new FormValidator(validationObject, profilePopupForm);
 profileFormValidator.enableValidation();
+
+const avatarFormValidator = new FormValidator(validationObject, avatarPopupForm);
+avatarFormValidator.enableValidation();
 
 
 function rendererCallback(cardData) {
@@ -97,6 +105,12 @@ function openCardPopup() {
   cardPopupForm.reset();
   cardFormValidator.resetValidation()
   cardFormValidator.disableButton(cardPopupSubmitBtn, validationObject)
+}
+
+function openAvatarPopup(){
+  avatarPopupForm.reset()
+  avatarFormValidator.resetValidation()
+  avatarFormValidator.disableButton(avatarPopupSubmitBtn, validationObject)
 }
 
 function openProfilePopup() {
@@ -140,6 +154,14 @@ api.addCard(formDataObject)
   popupCardWithForm.close();*/
 }
 
+function handleAvatarFormSubmit(formDataObject){
+  
+ //console.log(avatarPopupInput)
+ // avatarPopupInput.src = formDataObject.link
+ //profileAvatar.src = dataFromServer.avatar;
+
+}
+
 
 
 function openImagePopap(name, link) {
@@ -157,6 +179,11 @@ profileEditBtn.addEventListener('click', function () {
   openProfilePopup(profilePopup);
   popupProfileWithForm.open();
 
+})
+
+openAvatarPopupBtn.addEventListener('click', function(){
+  popupAvatarWithForm .open();
+  openAvatarPopup()
 })
 
 
