@@ -155,10 +155,15 @@ api.addCard(formDataObject)
 }
 
 function handleAvatarFormSubmit(formDataObject){
+  api.editAvatar(formDataObject)
+  .then(function(formDataObject){
+    avatar =formDataObject.link
+  })
+  .catch(function(err){
+    console.log('Ошибка', err)
+  })
   
- //console.log(avatarPopupInput)
- // avatarPopupInput.src = formDataObject.link
- //profileAvatar.src = dataFromServer.avatar;
+ 
 
 }
 
