@@ -20,6 +20,7 @@ export const imgPopupName = imgPopup.querySelector('.popup-image__title');
 export const btnImgPopupClose = imgPopup.querySelector('.popup__close');
 export const cardPopupSubmitBtn = cardPopup.querySelector('.popup__submit');
 export const deletPopupSubmitBtn = document.querySelector('.popup-delete__submit');
+export const profileAvatar = document.querySelector('.profile__avatar');
 
 
 export const validationObject = {

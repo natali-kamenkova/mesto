@@ -4,6 +4,20 @@ export class Api {
     this._headers = config.headers;
   }
 
+  getUserInfo() {
+    return fetch(`${this._url}/users/me `,{
+      method: 'GET',
+      headers: this._headers
+    })
+    .then(function (res) {
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+
+    })
+  }
+
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
@@ -13,7 +27,7 @@ export class Api {
         if (res.ok) {
           return res.json()
         }
-        return Promise.reject({ message: 'Ошибка на стороне сервера', res })
+        return Promise.reject(`Ошибка: ${res.status}`);
 
       })
 
@@ -30,7 +44,7 @@ export class Api {
         if (res.ok) {
           return res.json()
         }
-        return Promise.reject({ message: 'Ошибка на стороне сервера', res })
+        return Promise.reject(`Ошибка: ${res.status}`);
       })
 
   }
@@ -48,7 +62,7 @@ export class Api {
         if (res.ok) {
           return res.json()
         }
-        return Promise.reject({ message: 'Ошибка на стороне сервера', res })
+        return Promise.reject(`Ошибка: ${res.status}`);
       })
 
   }

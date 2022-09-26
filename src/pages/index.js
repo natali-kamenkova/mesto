@@ -2,7 +2,7 @@ import './index.css'
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector } from "../utils/constants.js";
-import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector } from "../utils/constants.js";
+import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector, profileAvatar } from "../utils/constants.js";
 import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
@@ -31,6 +31,16 @@ const api = new Api(config)
 })
 
 //api.removeCard()
+
+api.getUserInfo()
+.then(function(dataFromServer){
+  profileAvatar.src = dataFromServer.avatar;
+  profileName.textContent = dataFromServer.name;
+  profileJob.textContent = dataFromServer.about;
+})
+.catch(function(err){
+  console.log('Ошибка', err)
+})
 
  
 const popupDelete = new PopupDelete(popupDeleteSelector);
@@ -90,6 +100,8 @@ function openCardPopup() {
 }
 
 function openProfilePopup() {
+
+  
   profileInputName.value = userInfo.getUserInfo().name;
   profileInputJob.value = userInfo.getUserInfo().job;
   profileFormValidator.resetValidation()
