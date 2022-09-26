@@ -111,7 +111,15 @@ function openProfilePopup() {
 
 
 function handleSubmitProfileForm(formDataObject) {
-  userInfo.setUserInfo(formDataObject);
+  api.editProfile(formDataObject)
+  .then(function(formDataObject){
+    userInfo.setUserInfo(formDataObject);
+  })
+  .catch(function(err){
+    console.log('Ошибка', err)
+  })
+  //console.log(formDataObject)
+  // userInfo.setUserInfo(formDataObject);
 }
 
 

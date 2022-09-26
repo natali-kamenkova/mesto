@@ -18,6 +18,6 @@ export class UserInfo {
   setUserInfo(formData){
     
    this._name.textContent = formData.name;
-    this._job.textContent= formData.job;
+    this._job.textContent= formData.about;
   }
 }

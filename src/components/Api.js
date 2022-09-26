@@ -5,17 +5,17 @@ export class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._url}/users/me `,{
+    return fetch(`${this._url}/users/me`, {
       method: 'GET',
       headers: this._headers
     })
-    .then(function (res) {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
+      .then(function (res) {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
 
-    })
+      })
   }
 
   getInitialCards() {
@@ -49,7 +49,7 @@ export class Api {
 
   }
 
-  addCard(data){
+  addCard(data) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -65,6 +65,23 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
 
+  }
+
+  editProfile(data) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.job
+      })
+    })
+      .then(function (res) {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
   }
 
 
