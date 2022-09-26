@@ -1,6 +1,7 @@
 export const profilePopup = document.querySelector('.popup-profile');
 export const cardPopup = document.querySelector('.popup-cards');
 export const imgPopup = document.querySelector('.popup-image');
+export const avatarPopup = document.querySelector('.popup-avatar')
 export const profileEditBtn = document.querySelector('.profile__edit-btn');
 export const cardPopupBtn = document.querySelector('.profile__next-popup-btn');
 export const btnProfilePopupClose = document.querySelector('.popup__close');
@@ -19,6 +20,13 @@ export const imgPopupPicture = imgPopup.querySelector('.popup-image__img');
 export const imgPopupName = imgPopup.querySelector('.popup-image__title');
 export const btnImgPopupClose = imgPopup.querySelector('.popup__close');
 export const cardPopupSubmitBtn = cardPopup.querySelector('.popup__submit');
+export const deletPopupSubmitBtn = document.querySelector('.popup-delete__submit');
+export const profileAvatar = document.querySelector('.profile__avatar');
+export const openAvatarPopupBtn = document.querySelector('.profile__avatar-btn')
+export const avatarPopupForm = avatarPopup.querySelector('.popup__form')
+export const avatarPopupSubmitBtn = avatarPopup.querySelector('.popup__submit');
+export const avatarPopupInput = avatarPopup.querySelector('.popup__input')
+
 
 export const validationObject = {
   formSelector: '.popup__form',
@@ -40,6 +48,9 @@ export const profileNameSelector = '.profile__name';
 export const profileJobSelector = '.profile__profession';
 export const profileFormSelector = '.popup__form_profile';
 export const cardFormSelector = '.popup__form_card';
+export const popupDeleteSelector = '.popup-delete';
+export const popupAvatarSelector = '.popup-avatar';
+export const avatarFormSelector = '.popup__form_avatar'
 
 export const initialCards = [
 

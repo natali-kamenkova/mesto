@@ -43,6 +43,13 @@
 @import url(../blocks/popup/__span/_job-error/popup__span_job-error.css);
 @import url(../blocks/popup/__span/_card-name-error/popup__span_card-name-error.css);
 @import url(../blocks/popup/__span/_card-link-error/popup__span_card-link-error.css);
+@import url(../blocks/popup-delete/popup-delete.css);
+@import url(../blocks/popup-delete/__submit/popup-delete__submit.css);
+@import url(../blocks/popup-delete/__title/popup-delete__title.css);
+@import url(../blocks/profile/__avatar-btn/profile__avatar-btn.css);
+@import url(../blocks/popup-avatar/popup-avatar.css);
+@import url(../blocks/popup-avatar/__title/popup-avatar__title.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_avatar-link.css);
 
 
 

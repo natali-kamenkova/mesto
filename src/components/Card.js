@@ -1,13 +1,16 @@
 
 export class Card {
 
-  constructor(name, link, selector, openImageCallback) {
-    this.name = name;
-    this.link = link;
+  constructor(data, selector, openImageCallback, openDeletCallback) {
+    this._data = data
+    this.name = data.name;
+    this.link = data.link;
+    this._id = data.id;
     this._template = document.querySelector(selector).content
     this.openImageCallback = openImageCallback;
-    this._handleRemoveCard = this._handleRemoveCard.bind(this)
-
+    //this._handleRemoveCard = this._handleRemoveCard.bind(this)
+    this._openDeletCallback = openDeletCallback;
+    //this.handleClickDelete = handleClickDelete;
   }
 
 
@@ -20,18 +23,16 @@ export class Card {
   _handleLikeCard(evt) {
     evt.target.classList.toggle('element__like-btn_active');
   }
-
-  //удаление карточки
-  _handleRemoveCard() {
+  handleRemoveCard() {
     this._element.remove()
+    this._element = null;
   }
 
   _addEventListeners() {
     this._element.querySelector('.element__like-btn').addEventListener('click', this._handleLikeCard);
 
 
-    this._element.querySelector('.element__reset-btn').addEventListener('click', this._handleRemoveCard);
-
+    this._element.querySelector('.element__reset-btn').addEventListener('click', _ => this._handleClickDelete())
 
 
     this._element.querySelector('.element__image').addEventListener('click', () => {
@@ -49,6 +50,14 @@ export class Card {
     this._addEventListeners();
     return this._element;
 
+  }
+
+  _handleClickDelete() {
+    this._openDeletCallback(this);
+  }
+
+  getId() {
+    return this._data._id
   }
 
 
