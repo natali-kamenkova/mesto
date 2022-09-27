@@ -3,7 +3,7 @@ import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector, avatarPopup, avatarPopupForm , avatarPopupSubmitBtn, avatarPopupInput } from "../utils/constants.js";
 import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector, profileAvatar, popupAvatarSelector, avatarFormSelector, openAvatarPopupBtn } from "../utils/constants.js";
-import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector } from "../utils/constants.js";
+import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector, profileAvatarSelector } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
 import { UserInfo } from "../components/UserInfo.js";
@@ -32,13 +32,13 @@ const api = new Api(config)
   console.log('Ошибка', err)
 })
 
-//api.removeCard()
+
 
 api.getUserInfo()
 .then(function(dataFromServer){
-  profileAvatar.src = dataFromServer.avatar;
-  profileName.textContent = dataFromServer.name;
-  profileJob.textContent = dataFromServer.about;
+ 
+  userInfo.setUserInfo(dataFromServer);
+  userInfo.setUserAvatar(dataFromServer);
 })
 .catch(function(err){
   console.log('Ошибка', err)
@@ -56,7 +56,7 @@ popupCardWithForm.setEventListeners();
 const popupAvatarWithForm = new PopupWithForm(popupAvatarSelector, avatarFormSelector, handleAvatarFormSubmit);
 popupAvatarWithForm .setEventListeners();
 
-const userInfo = new UserInfo({ profileNameSelector, profileJobSelector });
+const userInfo = new UserInfo({ profileNameSelector, profileJobSelector,profileAvatarSelector });
 
 
 popupWithImage.setEventListeners();
@@ -84,7 +84,7 @@ function createCard(cardData) {
   return cardElement;
 }
 
-console.log(popupDelete)
+
 
 function openDeletePopup(cardInst){
  popupDelete.setSubmitAction(()=>{
@@ -123,7 +123,7 @@ function openProfilePopup() {
 }
 
 
-
+//сабмит попапа профиля
 function handleSubmitProfileForm(formDataObject) {
   api.editProfile(formDataObject)
   .then(function(formDataObject){
@@ -132,12 +132,11 @@ function handleSubmitProfileForm(formDataObject) {
   .catch(function(err){
     console.log('Ошибка', err)
   })
-  //console.log(formDataObject)
-  // userInfo.setUserInfo(formDataObject);
+ 
 }
 
 
-//добавление карточки из
+//добавление карточки (сабмит)
 function handleCardFormSubmit(formDataObject) {
 api.addCard(formDataObject)
 .then(function(dataFromServer){
@@ -148,16 +147,13 @@ api.addCard(formDataObject)
 .catch(function(err){
   console.log('Ошибка', err)
 })
- /* const card = createCard(formDataObject)
-  section.addItem(card)
- // console.log(formDataObject.name)
-  popupCardWithForm.close();*/
-}
 
+}
+// сабмит аватара
 function handleAvatarFormSubmit(formDataObject){
   api.editAvatar(formDataObject)
   .then(function(formDataObject){
-    avatar =formDataObject.link
+    userInfo.setUserAvatar(formDataObject)
   })
   .catch(function(err){
     console.log('Ошибка', err)
