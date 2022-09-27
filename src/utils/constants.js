@@ -51,6 +51,7 @@ export const cardFormSelector = '.popup__form_card';
 export const popupDeleteSelector = '.popup-delete';
 export const popupAvatarSelector = '.popup-avatar';
 export const avatarFormSelector = '.popup__form_avatar'
+export const profileAvatarSelector = '.profile__avatar'
 
 export const initialCards = [
 
