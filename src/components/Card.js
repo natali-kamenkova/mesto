@@ -1,16 +1,18 @@
 
 export class Card {
 
-  constructor(data, selector, openImageCallback, openDeletCallback) {
+  constructor(data, selector, openImageCallback, openDeletCallback, handleLikeClickCallback) {
     this._data = data
     this.name = data.name;
     this.link = data.link;
-    this._id = data.id;
+    this.cardId = data._id;
+    this._OwnerId = data.owner._id;
+    this._numberOfLikes = data.likes.length
     this._template = document.querySelector(selector).content
     this.openImageCallback = openImageCallback;
-    //this._handleRemoveCard = this._handleRemoveCard.bind(this)
     this._openDeletCallback = openDeletCallback;
-    //this.handleClickDelete = handleClickDelete;
+    this.myId = '7873e3d4966ed095d61ab965'
+    this._handleLikeClickCallback= handleLikeClickCallback
   }
 
 
@@ -19,8 +21,13 @@ export class Card {
     return cardElement;
   }
 
-  _handleLikeCard(evt) {
+  _handleLikeCard=(evt) =>{
+   /* this._upLikes()
+   this._setNumberOfLikes()*/
+   this._handleLikeClickCallback()
     evt.target.classList.toggle('element__like-btn_active');
+    
+
   }
   handleRemoveCard() {
     this._element.remove()
@@ -36,6 +43,12 @@ export class Card {
 
     this._element.querySelector('.element__image').addEventListener('click', () => {
       this.openImageCallback(this.name, this.link)
+      console.log(this._data)
+      /*console.log(this._OwnerId)*/
+      console.log(this._numberOfLikes)
+     /* console.log(this.link)
+     this._upLikes()
+     console.log(this._numberOfLikes)*/
     })
   }
 
@@ -47,6 +60,8 @@ export class Card {
     this._element.querySelector('.element__image').src = this.link;
     this._element.querySelector('.element__image').alt = this.name;
     this._addEventListeners();
+    this._checkId()
+    this._setNumberOfLikes();
     return this._element;
 
   }
@@ -59,8 +74,29 @@ export class Card {
     return this._data._id
   }
 
+  _checkId() {
+    if (this._OwnerId ===this.myId) {
+
+      this._element.querySelector('.element__reset-btn').classList.add('show')
+    }
+  }
+
+  _getNumberOfLikes(){
+    return this._numberOfLikes
+  }
+
+  _setNumberOfLikes(){
+    this._element.querySelector('.element__like-counter').textContent = this._getNumberOfLikes()
+  }
 
 
+  _upLikes(){
+    this._numberOfLikes += 1;
+  }
+
+  _downLikes(){
+    this._numberOfLikes-=1;
+  }
 
 }
 
