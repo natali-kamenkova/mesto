@@ -50,6 +50,7 @@
 @import url(../blocks/popup-avatar/popup-avatar.css);
 @import url(../blocks/popup-avatar/__title/popup-avatar__title.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_avatar-link.css);
-
+@import url(../blocks/element/__group-like/element__group-like.css);
+@import url(../blocks/element/__like-counter/element__like-counter.css);
 
 

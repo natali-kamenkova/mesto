@@ -1,7 +1,7 @@
 import './index.css'
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector, avatarPopup, avatarPopupForm , avatarPopupSubmitBtn, avatarPopupInput } from "../utils/constants.js";
+import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector, avatarPopup, avatarPopupForm, avatarPopupSubmitBtn, avatarPopupInput } from "../utils/constants.js";
 import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector, profileAvatar, popupAvatarSelector, avatarFormSelector, openAvatarPopupBtn } from "../utils/constants.js";
 import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector, profileAvatarSelector } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
@@ -14,37 +14,39 @@ import { Api } from '../components/Api';
 import { data } from 'autoprefixer';
 
 
-const config = { url: 'https://mesto.nomoreparties.co/v1/cohort-51',
-headers: {
-  authorization: 'c14fd4d2-b83b-4faf-994c-ea33775685d1',
-  "Content-Type": "application/json"
-}}
+const config = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-51',
+  headers: {
+    authorization: 'c14fd4d2-b83b-4faf-994c-ea33775685d1',
+    "Content-Type": "application/json"
+  }
+}
 
 const api = new Api(config)
+/*
+api.getInitialCards()
+  .then(function (data) {
+    section.renderer(data)
+    console.log(data)
 
- api.getInitialCards()
- .then(function(data){
-  section.renderer(data)
-  console.log(data)
-  
-})
-.catch(function(err){
-  console.log('Ошибка', err)
-})
+  })
+  .catch(function (err) {
+    console.log('Ошибка', err)
+  })
 
 
 
 api.getUserInfo()
-.then(function(dataFromServer){
- 
-  userInfo.setUserInfo(dataFromServer);
-  userInfo.setUserAvatar(dataFromServer);
-})
-.catch(function(err){
-  console.log('Ошибка', err)
-})
+  .then(function (dataFromServer) {
 
- 
+    userInfo.setUserInfo(dataFromServer);
+    userInfo.setUserAvatar(dataFromServer);
+  })
+  .catch(function (err) {
+    console.log('Ошибка', err)
+  })*/
+
+
 const popupDelete = new PopupDelete(popupDeleteSelector);
 popupDelete.setEventListeners();
 const popupWithImage = new PopupWithImage(popupImageSelector)
@@ -54,14 +56,14 @@ popupProfileWithForm.setEventListeners();
 const popupCardWithForm = new PopupWithForm(popupCardSelector, cardFormSelector, handleCardFormSubmit);
 popupCardWithForm.setEventListeners();
 const popupAvatarWithForm = new PopupWithForm(popupAvatarSelector, avatarFormSelector, handleAvatarFormSubmit);
-popupAvatarWithForm .setEventListeners();
+popupAvatarWithForm.setEventListeners();
 
-const userInfo = new UserInfo({ profileNameSelector, profileJobSelector,profileAvatarSelector });
+const userInfo = new UserInfo({ profileNameSelector, profileJobSelector, profileAvatarSelector });
 
 
 popupWithImage.setEventListeners();
 
-const section = new Section(  rendererCallback , containerSelector);
+const section = new Section(rendererCallback, containerSelector);
 //section.renderer(initialCards)
 
 const cardFormValidator = new FormValidator(validationObject, cardPopupForm);
@@ -72,6 +74,30 @@ profileFormValidator.enableValidation();
 const avatarFormValidator = new FormValidator(validationObject, avatarPopupForm);
 avatarFormValidator.enableValidation();
 
+api.getInitialCards()
+  .then(function (cardsFromServer) {
+    section.renderer(cardsFromServer)
+    console.log(cardsFromServer)
+
+  })
+  .catch(function (err) {
+    console.log('Ошибка', err)
+  })
+
+
+
+api.getUserInfo()
+  .then(function (dataFromServer) {
+
+    userInfo.setUserInfo(dataFromServer);
+    userInfo.setUserAvatar(dataFromServer);
+  })
+  .catch(function (err) {
+    console.log('Ошибка', err)
+  })
+
+
+
 
 function rendererCallback(cardData) {
   const cardWeJustCreated = createCard(cardData);
@@ -79,24 +105,28 @@ function rendererCallback(cardData) {
 }
 
 function createCard(cardData) {
-  const card = new Card(cardData, selectorTemplate, openImagePopap, openDeletePopup);
+  const card = new Card(cardData, selectorTemplate, openImagePopap, openDeletePopup, handleLikeClick);
+
   const cardElement = card.generateCard();
+
   return cardElement;
 }
 
+function handleLikeClick() {
 
+}
 
-function openDeletePopup(cardInst){
- popupDelete.setSubmitAction(()=>{
-  console.log()
-  api.removeCard(cardInst.getId())
-  .then(()=>{
-    cardInst.handleRemoveCard()
+function openDeletePopup(cardInst) {
+  popupDelete.setSubmitAction(() => {
+    
+    api.removeCard(cardInst.getId())
+      .then(() => {
+        cardInst.handleRemoveCard()
+      })
+      .catch(function (err) {
+        console.log('Ошибка', err)
+      })
   })
-  .catch(function(err){
-    console.log('Ошибка', err)
-  })
-})
   popupDelete.open();
 }
 
@@ -107,7 +137,7 @@ function openCardPopup() {
   cardFormValidator.disableButton(cardPopupSubmitBtn, validationObject)
 }
 
-function openAvatarPopup(){
+function openAvatarPopup() {
   avatarPopupForm.reset()
   avatarFormValidator.resetValidation()
   avatarFormValidator.disableButton(avatarPopupSubmitBtn, validationObject)
@@ -115,7 +145,7 @@ function openAvatarPopup(){
 
 function openProfilePopup() {
 
-  
+
   profileInputName.value = userInfo.getUserInfo().name;
   profileInputJob.value = userInfo.getUserInfo().job;
   profileFormValidator.resetValidation()
@@ -126,40 +156,42 @@ function openProfilePopup() {
 //сабмит попапа профиля
 function handleSubmitProfileForm(formDataObject) {
   api.editProfile(formDataObject)
-  .then(function(formDataObject){
-    userInfo.setUserInfo(formDataObject);
-  })
-  .catch(function(err){
-    console.log('Ошибка', err)
-  })
- 
+    .then(function (formDataObject) {
+      userInfo.setUserInfo(formDataObject);
+    })
+    .catch(function (err) {
+      console.log('Ошибка', err)
+    })
+
 }
 
 
 //добавление карточки (сабмит)
 function handleCardFormSubmit(formDataObject) {
-api.addCard(formDataObject)
-.then(function(dataFromServer){
-  const card = createCard(formDataObject)
-  section.addItem(card)
-  popupCardWithForm.close();
-})
-.catch(function(err){
-  console.log('Ошибка', err)
-})
+  api.addCard(formDataObject)
+    .then(function (formDataObject) {
+
+      const card = createCard(formDataObject)
+
+      section.addItem(card)
+      popupCardWithForm.close();
+    })
+    .catch(function (err) {
+      console.log('Ошибка', err)
+    })
 
 }
 // сабмит аватара
-function handleAvatarFormSubmit(formDataObject){
+function handleAvatarFormSubmit(formDataObject) {
   api.editAvatar(formDataObject)
-  .then(function(formDataObject){
-    userInfo.setUserAvatar(formDataObject)
-  })
-  .catch(function(err){
-    console.log('Ошибка', err)
-  })
-  
- 
+    .then(function (formDataObject) {
+      userInfo.setUserAvatar(formDataObject)
+    })
+    .catch(function (err) {
+      console.log('Ошибка', err)
+    })
+
+
 
 }
 
@@ -182,8 +214,8 @@ profileEditBtn.addEventListener('click', function () {
 
 })
 
-openAvatarPopupBtn.addEventListener('click', function(){
-  popupAvatarWithForm .open();
+openAvatarPopupBtn.addEventListener('click', function () {
+  popupAvatarWithForm.open();
   openAvatarPopup()
 })
 
