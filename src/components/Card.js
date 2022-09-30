@@ -7,11 +7,11 @@ export class Card {
     this.link = data.link;
     this.cardId = data._id;
     this._OwnerId = data.owner._id;
-    this._numberOfLikes = data.likes.length
+   
     this._template = document.querySelector(selector).content
     this.openImageCallback = openImageCallback;
     this._openDeletCallback = openDeletCallback;
-    //this.myId = '7873e3d4966ed095d61ab965';
+    
     this.userId = userId;
     this._handleLikeClickCallback = handleLikeClickCallback;
 
@@ -23,18 +23,18 @@ export class Card {
     return cardElement;
   }
 
-  
+
   handleRemoveCard() {
     this._element.remove()
     this._element = null;
   }
 
   _addEventListeners() {
-    
+
 
     this._cardLikeBtn.addEventListener('click', () => {
       this._handleLikeClickCallback(this);
-      
+
     })
 
     this._element.querySelector('.element__reset-btn').addEventListener('click', _ => this._handleClickDelete())
@@ -42,13 +42,12 @@ export class Card {
 
     this._element.querySelector('.element__image').addEventListener('click', () => {
       this.openImageCallback(this.name, this.link)
-
+      
     })
   }
 
   setLikesData(data) {
     this._data.likes = data.likes;
-    console.log(this._data.likes)
     this._updateLike();
   }
 
@@ -61,7 +60,7 @@ export class Card {
     this._element.querySelector('.element__image').alt = this.name;
     this._cardLikeBtn = this._element.querySelector('.element__like-btn');
     this._cardLikeCounter = this._element.querySelector('.element__like-counter');
-    // this._cardLikeCounter.textContent = this._numberOfLikes;
+    this._cardLikeCounter.textContent = this._data.likes.length;
     this._addEventListeners();
     this._checkId()
     this._updateLike();
@@ -84,9 +83,7 @@ export class Card {
     }
   }
 
-  _getNumberOfLikes() {
-    return this._numberOfLikes
-  }
+
 
   isLiked() {
     return this._data.likes.some((item) => {
@@ -95,7 +92,7 @@ export class Card {
   }
 
   _updateLike() {
-    this._cardLikeCounter.textContent = this._getNumberOfLikes();
+    this._cardLikeCounter.textContent = this._data.likes.length;
 
     if (this.isLiked()) {
       this._cardLikeBtn.classList.add('element__like-btn_active');
@@ -106,8 +103,8 @@ export class Card {
 
 
   }
- 
-  
+
+
 
 
 

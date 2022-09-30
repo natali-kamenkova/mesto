@@ -76,8 +76,8 @@ function rendererCallback(cardData) {
 
 function handleLikeClick(instance) {
   api.changeLike(instance.getId(), instance.isLiked())
-  .then(dataCardFromServer => {
-    instance.setLikesData(dataCardFromServer)
+  .then(dataCard => {
+    instance.setLikesData(dataCard)
     
     
   })
