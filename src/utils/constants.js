@@ -26,6 +26,8 @@ export const openAvatarPopupBtn = document.querySelector('.profile__avatar-btn')
 export const avatarPopupForm = avatarPopup.querySelector('.popup__form')
 export const avatarPopupSubmitBtn = avatarPopup.querySelector('.popup__submit');
 export const avatarPopupInput = avatarPopup.querySelector('.popup__input')
+export const profilePopupSubmitBtn = profilePopup.querySelector('.popup__submit');
+
 
 
 export const validationObject = {

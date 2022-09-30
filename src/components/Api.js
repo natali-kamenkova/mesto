@@ -18,6 +18,21 @@ export class Api {
       })
   }
 
+  changeLike(cardId, isLiked){
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: isLiked ? 'DELETE' : 'PUT',
+      headers: this._headers
+    })
+      .then(function (res) {
+        if (res.ok) {
+          return res.json()
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+
+      })
+  }
+
+  
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: 'GET',
@@ -99,6 +114,12 @@ export class Api {
         }
         return Promise.reject(`Ошибка: ${res.status}`);
       })
+  }
+
+ 
+
+  getAllInfo (){
+    return Promise.all([this.getUserInfo(), this.getInitialCards()])
   }
 
 

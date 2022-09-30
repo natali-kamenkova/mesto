@@ -2,8 +2,8 @@ import './index.css'
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector, avatarPopup, avatarPopupForm, avatarPopupSubmitBtn, avatarPopupInput } from "../utils/constants.js";
-import { profilePopupForm, profileName, profileJob, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector, profileAvatar, popupAvatarSelector, avatarFormSelector, openAvatarPopupBtn } from "../utils/constants.js";
-import { imgPopupPicture, imgPopupName, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector, profileAvatarSelector } from "../utils/constants.js";
+import { profilePopupForm, profileName, profileJob, profilePopupSubmitBtn, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector, profileAvatar, popupAvatarSelector, avatarFormSelector, openAvatarPopupBtn } from "../utils/constants.js";
+import { imgPopupPicture, imgPopupName,cardLikeBtn, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector, profileAvatarSelector } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { Popup } from "../components/Popup.js";
 import { UserInfo } from "../components/UserInfo.js";
@@ -11,7 +11,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupDelete } from "../components/PopupDelete.js";
 import { Api } from '../components/Api';
-import { data } from 'autoprefixer';
+//import { data } from 'autoprefixer';
 
 
 const config = {
@@ -23,28 +23,6 @@ const config = {
 }
 
 const api = new Api(config)
-/*
-api.getInitialCards()
-  .then(function (data) {
-    section.renderer(data)
-    console.log(data)
-
-  })
-  .catch(function (err) {
-    console.log('Ошибка', err)
-  })
-
-
-
-api.getUserInfo()
-  .then(function (dataFromServer) {
-
-    userInfo.setUserInfo(dataFromServer);
-    userInfo.setUserAvatar(dataFromServer);
-  })
-  .catch(function (err) {
-    console.log('Ошибка', err)
-  })*/
 
 
 const popupDelete = new PopupDelete(popupDeleteSelector);
@@ -74,23 +52,15 @@ profileFormValidator.enableValidation();
 const avatarFormValidator = new FormValidator(validationObject, avatarPopupForm);
 avatarFormValidator.enableValidation();
 
-api.getInitialCards()
-  .then(function (cardsFromServer) {
-    section.renderer(cardsFromServer)
-    console.log(cardsFromServer)
+  let userId = null;
 
-  })
-  .catch(function (err) {
-    console.log('Ошибка', err)
-  })
-
-
-
-api.getUserInfo()
-  .then(function (dataFromServer) {
-
-    userInfo.setUserInfo(dataFromServer);
-    userInfo.setUserAvatar(dataFromServer);
+  api.getAllInfo()
+  .then(([userData, cardsData])=>{
+    userId = userData._id;
+    section.renderer(cardsData);
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+   
   })
   .catch(function (err) {
     console.log('Ошибка', err)
@@ -104,21 +74,32 @@ function rendererCallback(cardData) {
   section.addItem(cardWeJustCreated)
 }
 
+function handleLikeClick(instance) {
+  api.changeLike(instance.getId(), instance.isLiked())
+  .then(dataCardFromServer => {
+    instance.setLikesData(dataCardFromServer)
+    
+    
+  })
+  .catch(function (err) {
+    console.log('Ошибка', err)
+  })
+
+}
+
 function createCard(cardData) {
-  const card = new Card(cardData, selectorTemplate, openImagePopap, openDeletePopup, handleLikeClick);
+  const card = new Card(cardData, selectorTemplate, openImagePopap, openDeletePopup, userId, handleLikeClick);
 
   const cardElement = card.generateCard();
 
   return cardElement;
 }
 
-function handleLikeClick() {
 
-}
 
 function openDeletePopup(cardInst) {
   popupDelete.setSubmitAction(() => {
-    
+
     api.removeCard(cardInst.getId())
       .then(() => {
         cardInst.handleRemoveCard()
@@ -151,16 +132,29 @@ function openProfilePopup() {
   profileFormValidator.resetValidation()
 
 }
-
+function renderLoading(isLoading, btn) {
+  if (isLoading) {
+    btn.innerText = 'Сохраняется...'
+  }
+  else {
+    btn.innerText = 'Сохранить'
+  }
+}
 
 //сабмит попапа профиля
 function handleSubmitProfileForm(formDataObject) {
   api.editProfile(formDataObject)
     .then(function (formDataObject) {
       userInfo.setUserInfo(formDataObject);
+
+      renderLoading(true, profilePopupSubmitBtn)
     })
     .catch(function (err) {
       console.log('Ошибка', err)
+    })
+    .finally(function (formDataObject) {
+
+      renderLoading(false, profilePopupSubmitBtn)
     })
 
 }
@@ -173,12 +167,18 @@ function handleCardFormSubmit(formDataObject) {
 
       const card = createCard(formDataObject)
 
+      renderLoading(true, cardPopupSubmitBtn)
       section.addItem(card)
       popupCardWithForm.close();
     })
     .catch(function (err) {
       console.log('Ошибка', err)
     })
+    .finally(function (formDataObject) {
+      renderLoading(false, cardPopupSubmitBtn)
+
+    })
+
 
 }
 // сабмит аватара
@@ -186,9 +186,14 @@ function handleAvatarFormSubmit(formDataObject) {
   api.editAvatar(formDataObject)
     .then(function (formDataObject) {
       userInfo.setUserAvatar(formDataObject)
+      renderLoading(true, avatarPopupSubmitBtn)
     })
     .catch(function (err) {
       console.log('Ошибка', err)
+    })
+    .finally(function (formDataObject) {
+      renderLoading(false, avatarPopupSubmitBtn)
+
     })
 
 
