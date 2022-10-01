@@ -42,7 +42,7 @@ export class Card {
 
     this._element.querySelector('.element__image').addEventListener('click', () => {
       this.openImageCallback(this.name, this.link)
-      
+      console.log(this._data)
     })
   }
 

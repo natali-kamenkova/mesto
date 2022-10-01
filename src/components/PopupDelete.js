@@ -3,7 +3,7 @@ import { Popup } from "./Popup.js";
 export class PopupDelete extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._submitHandlerDelete = null;
+    this._submitHandlerDelete = null
     this._popup = document.querySelector(popupSelector)
   }
 
@@ -18,9 +18,11 @@ export class PopupDelete extends Popup {
     this._popup.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitHandlerDelete(evt);
-      this.close();
+
     })
   }
 
- 
+
+
+
 }

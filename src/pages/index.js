@@ -1,7 +1,7 @@
 import './index.css'
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { profilePopup, cardPopup, imgPopup, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector, avatarPopup, avatarPopupForm, avatarPopupSubmitBtn, avatarPopupInput } from "../utils/constants.js";
+import { profilePopup, cardPopup, config, profileEditBtn, cardPopupBtn, profileInputName, profileInputJob, profileNameSelector, profileJobSelector, avatarPopup, avatarPopupForm, avatarPopupSubmitBtn, avatarPopupInput } from "../utils/constants.js";
 import { profilePopupForm, profileName, profileJob, profilePopupSubmitBtn, cardsContainer, cardPopupForm, cardPopupInputName, cardFormSelector, deletPopupSubmitBtn, profileFormSelector, popupDeleteSelector, profileAvatar, popupAvatarSelector, avatarFormSelector, openAvatarPopupBtn } from "../utils/constants.js";
 import { imgPopupPicture, imgPopupName,cardLikeBtn, cardPopupSubmitBtn, validationObject, selectorTemplate, containerSelector, initialCards, popupProfileSelector, popupCardSelector, popupImageSelector, profileAvatarSelector } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
@@ -14,13 +14,6 @@ import { Api } from '../components/Api';
 //import { data } from 'autoprefixer';
 
 
-const config = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-51',
-  headers: {
-    authorization: 'c14fd4d2-b83b-4faf-994c-ea33775685d1',
-    "Content-Type": "application/json"
-  }
-}
 
 const api = new Api(config)
 
@@ -103,13 +96,17 @@ function openDeletePopup(cardInst) {
     api.removeCard(cardInst.getId())
       .then(() => {
         cardInst.handleRemoveCard()
+        popupDelete.close();
       })
+      
       .catch(function (err) {
         console.log('Ошибка', err)
       })
   })
   popupDelete.open();
 }
+
+
 
 
 function openCardPopup() {
@@ -143,11 +140,12 @@ function renderLoading(isLoading, btn) {
 
 //сабмит попапа профиля
 function handleSubmitProfileForm(formDataObject) {
+  renderLoading(true, profilePopupSubmitBtn)
   api.editProfile(formDataObject)
     .then(function (formDataObject) {
       userInfo.setUserInfo(formDataObject);
-
-      renderLoading(true, profilePopupSubmitBtn)
+      popupProfileWithForm.close()             
+      
     })
     .catch(function (err) {
       console.log('Ошибка', err)
@@ -160,14 +158,15 @@ function handleSubmitProfileForm(formDataObject) {
 }
 
 
-//добавление карточки (сабмит)
+//добавление карточки (сабмит)                                 
 function handleCardFormSubmit(formDataObject) {
+  renderLoading(true, cardPopupSubmitBtn)
   api.addCard(formDataObject)
     .then(function (formDataObject) {
 
       const card = createCard(formDataObject)
 
-      renderLoading(true, cardPopupSubmitBtn)
+    
       section.addItem(card)
       popupCardWithForm.close();
     })
@@ -183,10 +182,11 @@ function handleCardFormSubmit(formDataObject) {
 }
 // сабмит аватара
 function handleAvatarFormSubmit(formDataObject) {
+  renderLoading(true, avatarPopupSubmitBtn)
   api.editAvatar(formDataObject)
     .then(function (formDataObject) {
       userInfo.setUserAvatar(formDataObject)
-      renderLoading(true, avatarPopupSubmitBtn)
+      popupAvatarWithForm .close()
     })
     .catch(function (err) {
       console.log('Ошибка', err)
@@ -195,6 +195,7 @@ function handleAvatarFormSubmit(formDataObject) {
       renderLoading(false, avatarPopupSubmitBtn)
 
     })
+    
 
 
 
