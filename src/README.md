@@ -1,13 +1,7 @@
-# Проект: Место
-
-### Обзор
-
- Figma
- Картинки
- Адаптивная верстка
- Технологии : Flex
- верстка pop up
- функции JS
+Building the project using webpack .
+ OOP methodology. 
+ Form validation.
+ Popups
  https://natali-kamenkova.github.io/mesto/
 
 

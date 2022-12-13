@@ -9,8 +9,8 @@
   opacity: 0;
   transition: visibility 0.3s, opacity 0.5s ease;
 }
-
+/*
 .popup_opened{
   visibility: visible;
   opacity: 1;
-}
+}*/
